@@ -6,143 +6,51 @@
   <title>开放智算产业联盟 COIA</title>
   <style>
     :root{
-      --bg:#f4f7fb;
-      --card:#ffffff;
-      --text:#10233f;
-      --muted:#4f647d;
-      --brand:#10bcd6;
-      --brand-dark:#0a7fa0;
-      --line:#d9e3ef;
+      --bg:#f4f7fb; --card:#fff; --text:#10233f; --muted:#4f647d;
+      --brand:#10bcd6; --line:#d9e3ef; --brand-dark:#0a7fa0;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--text)}
-    a{text-decoration:none;color:inherit}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif}
     .container{width:min(1120px,92%);margin:0 auto}
-    .topbar{
-      position:sticky;top:0;z-index:50;
-      background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
-      border-bottom:1px solid var(--line);
-    }
-    .topbar-inner{
-      min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px;
-    }
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .topbar-inner{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px}
     .brand{display:flex;align-items:center;gap:10px}
-    .brand img{height:42px;width:auto}
-    .brand-title{font-weight:700;font-size:1.04rem}
+    .brand img{height:40px}
     .nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-    .nav a{color:var(--muted);font-size:.95rem}
-    .nav a:hover{color:var(--brand-dark)}
-    .lang-btn{
-      border:1px solid var(--line);border-radius:999px;background:#fff;
-      padding:8px 14px;cursor:pointer;font-weight:600;color:var(--text);
-    }
-    .lang-btn:hover{border-color:var(--brand);color:var(--brand-dark)}
-
-    .hero{
-      background:linear-gradient(135deg,#102544 0%,#0c1a31 45%,#153763 100%);
-      color:#fff;padding:70px 0 62px;
-    }
-    .hero h1{margin:0 0 12px;font-size:clamp(1.9rem,4vw,3rem);line-height:1.18}
-    .hero p{margin:0;line-height:1.75;max-width:860px;color:#d8e8ff}
-    .hero-actions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:10px 16px;border-radius:10px;font-weight:600;border:1px solid transparent}
-    .btn-primary{background:var(--brand);color:#052432}
-    .btn-primary:hover{background:#1ad2ee}
-    .btn-outline{border-color:#79c8e2;color:#e5f8ff}
-    .btn-outline:hover{background:rgba(255,255,255,.08)}
-
-    section{padding:56px 0}
-    .section-title{margin:0 0 10px;font-size:1.64rem}
-    .section-desc{margin:0;color:var(--muted);line-height:1.8}
-    .anchor-offset{scroll-margin-top:86px}
-
-    .grid{display:grid;gap:16px}
-    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .card{
-      background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;
-      box-shadow:0 6px 20px rgba(16,35,63,.04);
-    }
-    .card h3{margin:0 0 8px;font-size:1.04rem}
-    .card p{margin:0;color:var(--muted);line-height:1.75}
-
-    .logo-section-note{
-      margin-top:8px;color:var(--muted);font-size:.92rem;
-    }
+    .nav a{color:var(--muted);text-decoration:none}
+    .lang-btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;cursor:pointer}
+    .hero{padding:62px 0;background:linear-gradient(135deg,#102544,#0c1a31 50%,#153763);color:#fff}
+    .hero h1{margin:0 0 10px;font-size:clamp(1.8rem,4vw,2.8rem)}
+    .hero p{margin:0;line-height:1.8;color:#d8e8ff;max-width:900px}
+    section{padding:52px 0}
+    .section-title{margin:0 0 10px;font-size:1.62rem}
+    .section-desc{margin:0;color:var(--muted);line-height:1.75}
+    .anchor-offset{scroll-margin-top:84px}
 
     .logo-group{
-      margin-top:20px;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:16px;
+      margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;
+      box-shadow:0 6px 20px rgba(16,35,63,.04);
     }
-    .logo-group h3{
-      margin:0 0 12px;
-      font-size:1.06rem;
-      color:#1f3c63;
-    }
-
+    .logo-group h3{margin:0 0 12px;color:#1f3c63;font-size:1.06rem}
     .logo-grid{
-      display:grid;
+      display:grid;gap:12px;
       grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
-      gap:12px;
     }
-
     .logo-item{
-      background:#fff;
-      border:1px solid #e5edf7;
-      border-radius:12px;
-      min-height:88px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px;
+      min-height:88px;background:#fff;border:1px solid #e5edf7;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;padding:10px;
       transition:.2s ease;
     }
-    .logo-item:hover{
-      transform:translateY(-1px);
-      box-shadow:0 8px 18px rgba(10,31,56,.07);
-      border-color:#cfe0f1;
-    }
+    .logo-item:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(10,31,56,.07);border-color:#cfe0f1}
+    .logo-item img{max-width:100%;max-height:56px;object-fit:contain;display:block}
 
-    .logo-item img{
-      max-width:100%;
-      max-height:56px;
-      object-fit:contain;
-      display:block;
-      image-rendering:auto;
-    }
-
-    .table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;margin-top:16px}
-    table{width:100%;border-collapse:collapse;min-width:760px}
-    th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.65}
-    th{background:#f1f7ff;color:#1f3c63}
-    tr:last-child td{border-bottom:none}
-
-    .footer{
-      margin-top:20px;background:#0a1830;color:#b8c9e5;padding:30px 0 36px;
-    }
-    .small{font-size:.9rem}
-
+    .note{margin-top:8px;color:var(--muted);font-size:.93rem}
+    .loading{display:inline-block;margin-top:10px;padding:8px 12px;border:1px solid #d6e7f8;background:#eef7ff;color:#2a557f;border-radius:8px}
+    .warn{margin-top:10px;padding:10px 12px;border:1px solid #ffe4ba;background:#fff8eb;color:#8a4b00;border-radius:8px;line-height:1.65}
     .hidden{display:none!important}
-    .loading{
-      display:inline-block;padding:8px 12px;border-radius:8px;background:#eef7ff;color:#2a557f;font-size:.92rem;
-      border:1px solid #d6e7f8;
-    }
-    .warn{
-      margin-top:10px;
-      color:#8a4b00;
-      background:#fff8eb;
-      border:1px solid #ffe4ba;
-      border-radius:8px;
-      padding:10px 12px;
-      font-size:.92rem;
-      line-height:1.6;
-    }
-
+    .footer{margin-top:20px;background:#0a1830;color:#b8c9e5;padding:28px 0}
     @media (max-width:920px){
       .topbar-inner{flex-direction:column;align-items:flex-start;padding:10px 0}
-      .grid-3{grid-template-columns:1fr}
       .logo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
   </style>
@@ -151,16 +59,11 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand">
-        <img src="coia-logo.png" alt="COIA Logo"
-             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='inline-block';" />
-        <strong id="logoFallback" style="display:none;color:#0a7fa0">COIA</strong>
-        <div class="brand-title" data-i18n="siteName">开放智算产业联盟</div>
+        <img src="coia-logo.png" alt="COIA Logo" onerror="this.style.display='none'"/>
+        <strong data-i18n="siteName">开放智算产业联盟</strong>
       </div>
       <nav class="nav">
-        <a href="#about" data-i18n="navAbout">联盟简介</a>
-        <a href="#org" data-i18n="navOrg">组织架构</a>
         <a href="#members" data-i18n="navMembers">会员单位</a>
-        <a href="#plan" data-i18n="navPlan">联盟规划</a>
         <button class="lang-btn" id="langBtn">EN</button>
       </nav>
     </div>
@@ -170,48 +73,16 @@
     <div class="container">
       <h1 data-i18n="heroTitle">开放智算产业联盟（COIA）</h1>
       <p data-i18n="heroDesc">面向企业级 AI 与大模型落地，构建开放、协同、可持续的产业生态，推动技术创新、标准共建与应用规模化。</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#members" data-i18n="heroBtn1">查看会员单位</a>
-        <a class="btn btn-outline" href="https://opea.dev/" target="_blank" rel="noopener" data-i18n="heroBtn2">访问 OPEA</a>
-      </div>
     </div>
   </section>
 
-  <section id="about" class="anchor-offset">
-    <div class="container">
-      <h2 class="section-title" data-i18n="aboutTitle">成立背景</h2>
-      <p class="section-desc" data-i18n="aboutP1">
-        AI 及大模型快速发展，产业应用落地成为关键。为推动企业级 AI 实践，孵化更多人工智能应用项目，
-        由多家行业机构筹备发起开放智算产业联盟（COIA）。
-      </p>
-    </div>
-  </section>
-
-  <section id="org" class="anchor-offset">
-    <div class="container">
-      <h2 class="section-title" data-i18n="orgTitle">组织架构</h2>
-      <div class="grid grid-3" style="margin-top:14px">
-        <article class="card"><h3 data-i18n="c1Title">理事会</h3><p data-i18n="c1Desc">联盟最高决策机构。</p></article>
-        <article class="card"><h3 data-i18n="c2Title">秘书处</h3><p data-i18n="c2Desc">日常执行与运营协调。</p></article>
-        <article class="card"><h3 data-i18n="c3Title">技术委员会（TOC）</h3><p data-i18n="c3Desc">技术路线与标准协作。</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 会员 Logo 墙 -->
   <section id="members" class="anchor-offset">
     <div class="container">
-      <h2 class="section-title" data-i18n="membersTitle">会员单位 Logo 墙</h2>
-      <p class="section-desc" data-i18n="membersDesc">
-        下方基于你提供的“整合大图”自动切分为单个 Logo 并按类别排版展示。
-      </p>
-      <div class="logo-section-note" data-i18n="membersTip">
-        提示：请将整合图保存为 members-all.png 放在同目录。
-      </div>
-      <div id="logoLoading" class="loading" style="margin-top:10px" data-i18n="loading">正在解析 Logo...</div>
-      <div id="logoWarn" class="warn hidden" data-i18n="warnText">
-        未找到 members-all.png，或图片加载失败。请检查文件名与路径。
-      </div>
+      <h2 class="section-title" data-i18n="membersTitle">会员单位 Logo 墙（人工精修版）</h2>
+      <p class="section-desc" data-i18n="membersDesc">已按固定裁切坐标拆分并排版，效果比自动识别更稳定。</p>
+      <div class="note" data-i18n="membersTip">请把整合图保存为 members-all.png 放在同目录。</div>
+      <div id="loading" class="loading" data-i18n="loading">正在加载并裁切 Logo...</div>
+      <div id="warn" class="warn hidden" data-i18n="warn">未找到 members-all.png 或加载失败，请检查文件名和路径。</div>
 
       <div class="logo-group">
         <h3 data-i18n="groupBoard">理事成员</h3>
@@ -230,351 +101,144 @@
     </div>
   </section>
 
-  <section id="plan" class="anchor-offset">
-    <div class="container">
-      <h2 class="section-title" data-i18n="planTitle">3-5 年远景规划</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th data-i18n="tCol1">联盟目标</th>
-              <th>2024-2025</th>
-              <th>2025-2027</th>
-              <th>2027-2029</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-i18n="tR1K">会员数</td>
-              <td data-i18n="tR1C1">50 家</td>
-              <td data-i18n="tR1C2">200 家</td>
-              <td data-i18n="tR1C3">500 家</td>
-            </tr>
-            <tr>
-              <td data-i18n="tR2K">行业案例</td>
-              <td data-i18n="tR2C1">10 个</td>
-              <td data-i18n="tR2C2">50+ 个</td>
-              <td data-i18n="tR2C3">100+ 个</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
   <footer class="footer">
     <div class="container">
-      <div class="brand">
-        <img src="coia-logo.png" alt="COIA" onerror="this.style.display='none'" />
-        <div>
-          <div style="font-weight:700" data-i18n="footName">开放智算产业联盟 COIA</div>
-          <div class="small" data-i18n="footDesc">Open · Collaborative · Intelligent Computing</div>
-        </div>
-      </div>
-      <p class="small" style="margin-top:12px" data-i18n="footCopy">© 2026 COIA. All rights reserved.</p>
+      <div data-i18n="foot">© 2026 COIA. 保留所有权利。</div>
     </div>
   </footer>
 
   <script>
-    // =========================
-    // i18n
-    // =========================
+    // ===== i18n =====
     const i18n = {
       zh: {
         siteName:"开放智算产业联盟",
-        navAbout:"联盟简介", navOrg:"组织架构", navMembers:"会员单位", navPlan:"联盟规划",
+        navMembers:"会员单位",
         heroTitle:"开放智算产业联盟（COIA）",
         heroDesc:"面向企业级 AI 与大模型落地，构建开放、协同、可持续的产业生态，推动技术创新、标准共建与应用规模化。",
-        heroBtn1:"查看会员单位", heroBtn2:"访问 OPEA",
-        aboutTitle:"成立背景",
-        aboutP1:"AI 及大模型快速发展，产业应用落地成为关键。为推动企业级 AI 实践，孵化更多人工智能应用项目，由多家行业机构筹备发起开放智算产业联盟（COIA）。",
-        orgTitle:"组织架构",
-        c1Title:"理事会", c1Desc:"联盟最高决策机构。",
-        c2Title:"秘书处", c2Desc:"日常执行与运营协调。",
-        c3Title:"技术委员会（TOC）", c3Desc:"技术路线与标准协作。",
-        membersTitle:"会员单位 Logo 墙",
-        membersDesc:"下方基于你提供的“整合大图”自动切分为单个 Logo 并按类别排版展示。",
-        membersTip:"提示：请将整合图保存为 members-all.png 放在同目录。",
+        membersTitle:"会员单位 Logo 墙（人工精修版）",
+        membersDesc:"已按固定裁切坐标拆分并排版，效果比自动识别更稳定。",
+        membersTip:"请把整合图保存为 members-all.png 放在同目录。",
+        loading:"正在加载并裁切 Logo...",
+        warn:"未找到 members-all.png 或加载失败，请检查文件名和路径。",
         groupBoard:"理事成员",
         groupGeneral:"普通成员",
         groupPartner:"伙伴成员",
-        loading:"正在解析 Logo...",
-        warnText:"未找到 members-all.png，或图片加载失败。请检查文件名与路径。",
-        planTitle:"3-5 年远景规划",
-        tCol1:"联盟目标",
-        tR1K:"会员数", tR1C1:"50 家", tR1C2:"200 家", tR1C3:"500 家",
-        tR2K:"行业案例", tR2C1:"10 个", tR2C2:"50+ 个", tR2C3:"100+ 个",
-        footName:"开放智算产业联盟 COIA",
-        footDesc:"开放 · 协同 · 智算产业",
-        footCopy:"© 2026 COIA. 保留所有权利。"
+        foot:"© 2026 COIA. 保留所有权利。"
       },
       en: {
-        siteName:"Cooperative Open Intelligent Industry Alliance",
-        navAbout:"About", navOrg:"Organization", navMembers:"Members", navPlan:"Roadmap",
+        siteName:"COIA",
+        navMembers:"Members",
         heroTitle:"COIA — Cooperative Open Intelligent Industry Alliance",
-        heroDesc:"Focused on enterprise AI and LLM adoption, COIA builds an open and collaborative ecosystem to accelerate innovation, standards, and scaled applications.",
-        heroBtn1:"View Members", heroBtn2:"Visit OPEA",
-        aboutTitle:"Background",
-        aboutP1:"As AI and LLMs grow rapidly, enterprise deployment becomes critical. COIA was jointly initiated by leading organizations to accelerate practical AI adoption.",
-        orgTitle:"Organization",
-        c1Title:"Board", c1Desc:"Top decision-making body.",
-        c2Title:"Secretariat", c2Desc:"Daily execution and operations.",
-        c3Title:"Technical Committee (TOC)", c3Desc:"Technical roadmap and standards collaboration.",
-        membersTitle:"Member Logo Wall",
-        membersDesc:"Auto-splitted from your merged image and organized by membership type.",
-        membersTip:"Tip: save the merged image as members-all.png in the same folder.",
+        heroDesc:"Focused on enterprise AI and LLM adoption, COIA builds an open and collaborative ecosystem for innovation, standards, and scaled applications.",
+        membersTitle:"Member Logo Wall (Manual Fine-tuned)",
+        membersDesc:"Split with fixed hand-tuned crop boxes for stable and clean presentation.",
+        membersTip:"Save your merged image as members-all.png in the same folder.",
+        loading:"Loading and cropping logos...",
+        warn:"members-all.png not found or failed to load. Please check filename/path.",
         groupBoard:"Board Members",
         groupGeneral:"General Members",
         groupPartner:"Partner Members",
-        loading:"Parsing logos...",
-        warnText:"members-all.png not found or failed to load. Please check filename/path.",
-        planTitle:"3-5 Year Vision",
-        tCol1:"Goal",
-        tR1K:"Members", tR1C1:"50", tR1C2:"200", tR1C3:"500",
-        tR2K:"Industry Cases", tR2C1:"10", tR2C2:"50+", tR2C3:"100+",
-        footName:"COIA — Cooperative Open Intelligent Industry Alliance",
-        footDesc:"Open · Collaborative · Intelligent Computing",
-        footCopy:"© 2026 COIA. All rights reserved."
+        foot:"© 2026 COIA. All rights reserved."
       }
     };
-
     let lang = "zh";
-    function renderLang() {
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (i18n[lang][key]) el.textContent = i18n[lang][key];
+    function renderLang(){
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.dataset.i18n;
+        if(i18n[lang][key]) el.textContent = i18n[lang][key];
       });
-      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
-      document.title = lang === "zh" ? "开放智算产业联盟 COIA" : "COIA Alliance";
       document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
     }
-    document.getElementById("langBtn").addEventListener("click", () => {
+    document.getElementById("langBtn").addEventListener("click",()=>{
       lang = lang === "zh" ? "en" : "zh";
       renderLang();
     });
     renderLang();
 
-    // =========================
-    // Logo Auto Split
-    // =========================
-    const loadingEl = document.getElementById("logoLoading");
-    const warnEl = document.getElementById("logoWarn");
-
-    // 这三个区域针对你给的图做了分段（去掉左侧“理事成员/普通成员/伙伴成员”文字区域）
-    // 如果你后续换图，只需要调这三个区域坐标
-    const regions = {
-      board:   { x1: 95,  y1: 35,  x2: 1730, y2: 190 },
-      general: { x1: 120, y1: 205, x2: 1730, y2: 585 },
-      partner: { x1: 120, y1: 590, x2: 1730, y2: 820 }
+    // ===== Manual crop boxes =====
+    // 基准尺寸：你给的图约为 1766 x 843（按该比例人工精修）
+    // 坐标格式: [x, y, w, h]
+    const BOXES = {
+      board: [
+        [80,  55, 180, 98],   // ByteDance
+        [245, 52, 235, 104],  // China Mobile
+        [475, 34, 160, 135],  // China Unicom
+        [625, 52, 170, 100],  // Digital China
+        [790, 60, 165, 85],   // H3C
+        [950, 56, 170, 86],   // Intel
+        [1110,55, 205, 100],  // OpenAnolis
+        [1315,48, 245, 110],  // UnionTech
+        [1555,56, 175, 84]    // ZTE
+      ],
+      general: [
+        // Row 1
+        [110,220,120,90], [225,225,120,80], [340,225,145,80], [485,220,130,82],
+        [615,220,165,85], [790,220,155,85], [950,220,130,85], [1080,220,150,85],
+        [1230,220,155,85], [1385,220,145,85], [1530,220,190,85],
+        // Row 2
+        [90,320,170,78], [255,320,165,78], [420,320,140,78], [560,305,140,98],
+        [700,320,170,78], [865,320,120,78], [980,320,145,78], [1125,318,150,82],
+        [1275,318,180,82], [1455,318,170,82],
+        // Row 3
+        [110,405,250,78], [360,410,160,70], [520,405,160,78], [680,405,190,78],
+        [910,405,150,78], [1060,405,145,78], [1215,405,170,78], [1385,400,235,85],
+        // Row 4
+        [120,500,150,82], [295,500,140,82], [465,500,170,82], [670,500,160,82],
+        [840,500,160,82], [1020,500,165,82]
+      ],
+      partner: [
+        // Row 1
+        [105,625,210,95], [300,620,470,95], [775,625,185,95],
+        [960,620,190,95], [1160,625,300,95], [1520,620,200,95],
+        // Row 2
+        [105,730,220,90], [330,730,175,90], [510,730,280,90]
+      ]
     };
 
-    function isForeground(r,g,b,a){
-      if (a < 10) return false;
-      // 排除白底
-      if (r > 245 && g > 245 && b > 245) return false;
-      // 排除过浅颜色噪点
-      if (r > 238 && g > 238 && b > 238) return false;
-      return true;
-    }
-
-    function getImageDataFromImage(img){
-      const c = document.createElement("canvas");
-      c.width = img.naturalWidth;
-      c.height = img.naturalHeight;
-      const ctx = c.getContext("2d");
-      ctx.drawImage(img,0,0);
-      return { canvas:c, ctx, data:ctx.getImageData(0,0,c.width,c.height), width:c.width, height:c.height };
-    }
-
-    function extractComponents(imgDataObj, region){
-      const { data, width } = imgDataObj.data;
-      const x1 = Math.max(0, region.x1), y1 = Math.max(0, region.y1);
-      const x2 = Math.min(imgDataObj.width - 1, region.x2), y2 = Math.min(imgDataObj.height - 1, region.y2);
-      const rw = x2 - x1 + 1, rh = y2 - y1 + 1;
-      const visited = new Uint8Array(rw * rh);
-      const comps = [];
-
-      function idxLocal(x,y){ return (y - y1) * rw + (x - x1); }
-      function idxRGBA(x,y){ return (y * width + x) * 4; }
-
-      for(let y=y1; y<=y2; y++){
-        for(let x=x1; x<=x2; x++){
-          const vi = idxLocal(x,y);
-          if (visited[vi]) continue;
-
-          const p = idxRGBA(x,y);
-          const fg = isForeground(data[p], data[p+1], data[p+2], data[p+3]);
-          if (!fg) { visited[vi]=1; continue; }
-
-          // BFS
-          let qx = [x], qy = [y], qi = 0;
-          visited[vi] = 1;
-          let minX=x,maxX=x,minY=y,maxY=y,count=0;
-          while(qi < qx.length){
-            const cx = qx[qi], cy = qy[qi]; qi++;
-            count++;
-            if (cx<minX) minX=cx; if (cx>maxX) maxX=cx;
-            if (cy<minY) minY=cy; if (cy>maxY) maxY=cy;
-
-            const nbs = [
-              [cx+1,cy],[cx-1,cy],[cx,cy+1],[cx,cy-1],
-              [cx+1,cy+1],[cx-1,cy-1],[cx+1,cy-1],[cx-1,cy+1]
-            ];
-            for(const [nx,ny] of nbs){
-              if (nx<x1 || nx>x2 || ny<y1 || ny>y2) continue;
-              const nvi = idxLocal(nx,ny);
-              if (visited[nvi]) continue;
-              const np = idxRGBA(nx,ny);
-              if (isForeground(data[np],data[np+1],data[np+2],data[np+3])){
-                visited[nvi]=1;
-                qx.push(nx); qy.push(ny);
-              } else {
-                visited[nvi]=1;
-              }
-            }
-          }
-
-          const w = maxX - minX + 1;
-          const h = maxY - minY + 1;
-          // 过滤噪点和边框碎片
-          if (count < 90) continue;
-          if (w < 18 || h < 12) continue;
-          if (w > 900 || h > 220) continue;
-          if (h < 8) continue;
-
-          comps.push({x:minX, y:minY, w, h, count});
-        }
-      }
-      return comps;
-    }
-
-    function overlapLen(a1,a2,b1,b2){
-      return Math.max(0, Math.min(a2,b2)-Math.max(a1,b1));
-    }
-
-    function shouldMerge(a,b){
-      const ax2 = a.x+a.w, ay2 = a.y+a.h;
-      const bx2 = b.x+b.w, by2 = b.y+b.h;
-
-      const gapX = Math.max(0, Math.max(a.x,b.x)-Math.min(ax2,bx2));
-      const gapY = Math.max(0, Math.max(a.y,b.y)-Math.min(ay2,by2));
-      const ovX = overlapLen(a.x,ax2,b.x,bx2);
-      const ovY = overlapLen(a.y,ay2,b.y,by2);
-
-      // 同一logo内字母/文字常见情况：横向近 + 竖向有重叠
-      const condA = gapX <= 26 && (ovY >= 2 || gapY <= 10);
-
-      // 上下两行文字（同一个logo）场景：竖向近 + 横向有较大重叠
-      const minW = Math.min(a.w,b.w);
-      const condB = gapY <= 16 && ovX >= Math.max(14, minW * 0.28);
-
-      if (!(condA || condB)) return false;
-
-      // 防止把相邻不同logo误并（宽度过大不合并）
-      const nx = Math.min(a.x,b.x), ny = Math.min(a.y,b.y);
-      const nw = Math.max(ax2,bx2)-nx, nh = Math.max(ay2,by2)-ny;
-      if (nw > 320 && nh < 120) return false;
-
-      return true;
-    }
-
-    function mergeBoxes(boxes){
-      let arr = boxes.slice();
-      let changed = true;
-      while(changed){
-        changed = false;
-        outer:
-        for(let i=0;i<arr.length;i++){
-          for(let j=i+1;j<arr.length;j++){
-            if(shouldMerge(arr[i],arr[j])){
-              const a = arr[i], b = arr[j];
-              const nx = Math.min(a.x,b.x), ny = Math.min(a.y,b.y);
-              const nw = Math.max(a.x+a.w,b.x+b.w)-nx;
-              const nh = Math.max(a.y+a.h,b.y+b.h)-ny;
-              arr[i] = {x:nx,y:ny,w:nw,h:nh,count:a.count+b.count};
-              arr.splice(j,1);
-              changed = true;
-              break outer;
-            }
-          }
-        }
-      }
-      // 再过滤一次异常框
-      return arr.filter(b => b.w >= 30 && b.h >= 16 && b.w <= 380 && b.h <= 180);
-    }
-
-    function sortBoxes(a,b){
-      // 先按y分行，再按x
-      const rowA = Math.round(a.y / 36);
-      const rowB = Math.round(b.y / 36);
-      if (rowA !== rowB) return rowA - rowB;
-      return a.x - b.x;
-    }
-
-    function cropToImg(sprite, box, pad=4){
-      const sx = Math.max(0, box.x - pad);
-      const sy = Math.max(0, box.y - pad);
-      const sw = Math.min(sprite.naturalWidth - sx, box.w + pad*2);
-      const sh = Math.min(sprite.naturalHeight - sy, box.h + pad*2);
+    function cropToDataURL(img, box, pad=4){
+      const [x,y,w,h] = box;
+      const sx = Math.max(0, x - pad);
+      const sy = Math.max(0, y - pad);
+      const sw = Math.min(img.naturalWidth - sx, w + pad * 2);
+      const sh = Math.min(img.naturalHeight - sy, h + pad * 2);
 
       const c = document.createElement("canvas");
       c.width = sw; c.height = sh;
       const ctx = c.getContext("2d");
-      ctx.drawImage(sprite, sx, sy, sw, sh, 0, 0, sw, sh);
-
-      const out = new Image();
-      out.alt = "member-logo";
-      out.src = c.toDataURL("image/png");
-      return out;
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+      return c.toDataURL("image/png");
     }
 
-    function renderGroup(gridId, boxes, sprite){
+    function renderGroup(gridId, boxes, img){
       const grid = document.getElementById(gridId);
       grid.innerHTML = "";
-      boxes.sort(sortBoxes).forEach((b)=>{
+      boxes.forEach((b,idx)=>{
         const item = document.createElement("div");
         item.className = "logo-item";
-        const img = cropToImg(sprite, b, 4);
-        item.appendChild(img);
+        const im = new Image();
+        im.alt = "member-logo-" + (idx + 1);
+        im.src = cropToDataURL(img, b, 4);
+        item.appendChild(im);
         grid.appendChild(item);
       });
     }
 
-    async function buildLogoWall(){
-      const sprite = new Image();
-      sprite.src = "members-all.png";
+    function buildLogoWall(){
+      const img = new Image();
+      img.src = "members-all.png";
+      const loading = document.getElementById("loading");
+      const warn = document.getElementById("warn");
 
-      sprite.onload = () => {
-        const imgDataObj = getImageDataFromImage(sprite);
-
-        // 各分组：提取组件 -> 合并 -> 渲染
-        const boardComps = extractComponents(imgDataObj, regions.board);
-        const generalComps = extractComponents(imgDataObj, regions.general);
-        const partnerComps = extractComponents(imgDataObj, regions.partner);
-
-        const boardBoxes = mergeBoxes(boardComps);
-        const generalBoxes = mergeBoxes(generalComps);
-        const partnerBoxes = mergeBoxes(partnerComps);
-
-        renderGroup("grid-board", boardBoxes, sprite);
-        renderGroup("grid-general", generalBoxes, sprite);
-        renderGroup("grid-partner", partnerBoxes, sprite);
-
-        loadingEl.classList.add("hidden");
-
-        // 若识别数量异常，给出提示
-        const total = boardBoxes.length + generalBoxes.length + partnerBoxes.length;
-        if (total < 30) {
-          warnEl.classList.remove("hidden");
-          warnEl.textContent = lang === "zh"
-            ? "已加载图片，但自动切分结果偏少。建议我给你做“人工精修坐标版”，可以保证每个 logo 独立整齐。"
-            : "Image loaded, but auto-split count is low. I can provide a manually fine-tuned coordinate version for perfect separation.";
-        }
+      img.onload = () => {
+        renderGroup("grid-board", BOXES.board, img);
+        renderGroup("grid-general", BOXES.general, img);
+        renderGroup("grid-partner", BOXES.partner, img);
+        loading.classList.add("hidden");
       };
-
-      sprite.onerror = () => {
-        loadingEl.classList.add("hidden");
-        warnEl.classList.remove("hidden");
+      img.onerror = () => {
+        loading.classList.add("hidden");
+        warn.classList.remove("hidden");
       };
     }
 
