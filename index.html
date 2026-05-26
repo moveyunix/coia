@@ -1,6 +1,8 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>开放智算产业联盟 COIA</title>
   <style>
     :root{
@@ -9,130 +11,102 @@
       --text:#10233f;
       --muted:#4f647d;
       --brand:#10bcd6;
+      --brand-dark:#0a7fa0;
       --line:#d9e3ef;
-      --hero1:#102544;
-      --hero2:#153763;
-      --footer:#0a1830;
+      --hero:#0d1f38;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
+    html,body{margin:0;padding:0;font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;background:var(--bg);color:var(--text);}
+    a{text-decoration:none;color:inherit}
     .container{width:min(1120px,92%);margin:0 auto}
-
     .topbar{
-      position:sticky;top:0;z-index:20;
-      background:rgba(255,255,255,.94);
-      backdrop-filter:blur(8px);
+      position:sticky;top:0;z-index:30;
+      background:rgba(255,255,255,.95);backdrop-filter:blur(10px);
       border-bottom:1px solid var(--line);
     }
     .topbar-inner{
-      min-height:68px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      display:flex;align-items:center;justify-content:space-between;
+      min-height:74px;gap:14px;
     }
-    .brand{font-weight:700}
-    .nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-    .nav a{color:var(--muted);text-decoration:none}
-    .nav a:hover{color:var(--text)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:44px;width:auto;display:block}
+    .brand-title{font-weight:700;font-size:1.05rem}
+    .nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+    .nav a{font-size:.95rem;color:var(--muted)}
+    .nav a:hover{color:var(--brand-dark)}
     .lang-btn{
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:999px;
-      padding:8px 14px;
-      cursor:pointer;
-      color:var(--text);
+      border:1px solid var(--line);background:#fff;border-radius:999px;
+      padding:8px 14px;cursor:pointer;font-weight:600;color:var(--text);
     }
-
+    .lang-btn:hover{border-color:var(--brand);color:var(--brand-dark)}
     .hero{
-      background:linear-gradient(135deg,var(--hero1),#0c1a31 50%,var(--hero2));
-      color:#fff;
-      padding:72px 0 68px;
+      background:linear-gradient(135deg, #102544 0%, #0c1a31 45%, #153763 100%);
+      color:#fff;padding:72px 0 64px;
     }
-    .hero h1{margin:0 0 12px;font-size:clamp(1.9rem,4vw,2.9rem)}
-    .hero p{
-      margin:0;
-      line-height:1.85;
-      color:#d8e8ff;
-      max-width:920px;
-    }
-
-    section{padding:54px 0}
-    .anchor-offset{scroll-margin-top:86px}
-    .section-title{margin:0 0 10px;font-size:1.6rem}
-    .section-desc{margin:0;color:var(--muted);line-height:1.8}
-
-    .grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:14px;
-    }
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:16px;
-      box-shadow:0 6px 20px rgba(16,35,63,.04);
-    }
-    .card h3{margin:0 0 8px;font-size:1.02rem;color:#1f3c63}
-    .card p{margin:0;color:var(--muted);line-height:1.7}
-
-    .timeline{
-      margin-top:14px;
-      border-left:2px solid #dbe8f6;
-      padding-left:14px;
-      display:grid;
-      gap:12px;
-    }
-    .timeline-item{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:12px 14px;
-    }
-    .timeline-item b{color:#1d3f68}
-
-    .cta{
-      margin-top:18px;
-      display:flex;flex-wrap:wrap;gap:10px;
-    }
+    .hero h1{margin:0 0 14px;font-size:clamp(1.8rem,4vw,3rem);line-height:1.18}
+    .hero p{margin:0;color:#d4e4ff;max-width:820px;line-height:1.75}
+    .hero-actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
     .btn{
-      display:inline-block;
-      text-decoration:none;
-      border-radius:10px;
-      padding:10px 14px;
+      display:inline-block;padding:11px 18px;border-radius:10px;font-weight:600;
       border:1px solid transparent;
-      font-weight:600;
     }
-    .btn-primary{background:var(--brand);color:#fff}
-    .btn-primary:hover{background:#0ea8c0}
-    .btn-ghost{background:#fff;color:#1f3c63;border-color:#cfe0f1}
-    .btn-ghost:hover{background:#f7fbff}
-
+    .btn-primary{background:var(--brand);color:#062430}
+    .btn-primary:hover{background:#18cce8}
+    .btn-outline{border-color:#79c8e2;color:#dff6ff}
+    .btn-outline:hover{background:rgba(255,255,255,.08)}
+    section{padding:56px 0}
+    .section-title{font-size:1.65rem;margin:0 0 12px}
+    .section-desc{margin:0;color:var(--muted);line-height:1.8}
+    .grid{display:grid;gap:18px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:14px;
+      padding:20px;box-shadow:0 6px 20px rgba(16,35,63,.04);
+    }
+    .card h3{margin:0 0 10px;font-size:1.07rem}
+    .card p{margin:0;color:var(--muted);line-height:1.75}
+    .highlight{
+      border-left:4px solid var(--brand);padding:14px 16px;background:#eefbff;border-radius:8px;
+      margin-top:18px;color:#204664;line-height:1.75;
+    }
+    .list{margin:0;padding-left:20px;color:var(--muted);line-height:1.85}
+    .list li{margin-bottom:6px}
+    .leaders .card h4{margin:0 0 8px;font-size:1rem}
+    .leaders .card ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.75}
+    .table-wrap{
+      overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;
+    }
+    table{width:100%;border-collapse:collapse;min-width:760px}
+    th,td{padding:14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.65}
+    th{background:#f1f7ff;color:#1f3c63;font-size:.95rem}
+    tr:last-child td{border-bottom:none}
     .footer{
-      margin-top:24px;
-      background:var(--footer);
-      color:#b8c9e5;
-      padding:28px 0;
+      background:#0a1830;color:#b8c9e5;padding:34px 0 38px;margin-top:20px;
     }
-
-    @media (max-width:920px){
-      .topbar-inner{flex-direction:column;align-items:flex-start;padding:10px 0}
-      .grid{grid-template-columns:1fr}
+    .footer .brand img{height:36px}
+    .small{font-size:.9rem}
+    .anchor-offset{scroll-margin-top:88px}
+    @media (max-width:900px){
+      .grid-2,.grid-3{grid-template-columns:1fr}
+      .topbar-inner{align-items:flex-start;flex-direction:column;padding:10px 0}
+      .nav{gap:12px}
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
-      <div class="brand" data-i18n="siteName">开放智算产业联盟</div>
+      <div class="brand">
+        <img src="coia-logo.png" alt="COIA Logo" onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='inline-block';" />
+        <div id="logo-fallback" style="display:none;font-weight:800;color:var(--brand-dark)">COIA</div>
+        <div class="brand-title" data-i18n="siteName">开放智算产业联盟</div>
+      </div>
       <nav class="nav">
         <a href="#about" data-i18n="navAbout">联盟简介</a>
-        <a href="#focus" data-i18n="navFocus">重点方向</a>
-        <a href="#plan" data-i18n="navPlan">年度计划</a>
+        <a href="#org" data-i18n="navOrg">组织架构</a>
+        <a href="#leaders" data-i18n="navLeaders">负责人</a>
+        <a href="#plan" data-i18n="navPlan">联盟规划</a>
         <a href="#join" data-i18n="navJoin">加入我们</a>
         <button class="lang-btn" id="langBtn">EN</button>
       </nav>
@@ -143,41 +117,93 @@
     <div class="container">
       <h1 data-i18n="heroTitle">开放智算产业联盟（COIA）</h1>
       <p data-i18n="heroDesc">
-        面向企业级 AI 与大模型落地，构建开放、协同、可持续的产业生态，
-        推动技术创新、标准共建与应用规模化。
+        面向企业级 AI 与大模型落地，构建开放、协同、可持续的产业生态，推动技术创新、标准共建与应用规模化。
       </p>
-      <div class="cta">
-        <a class="btn btn-primary" href="#join" data-i18n="heroBtn1">申请加入</a>
-        <a class="btn btn-ghost" href="#about" data-i18n="heroBtn2">了解更多</a>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#about" data-i18n="heroBtn1">了解联盟</a>
+        <a class="btn btn-outline" href="https://opea.dev/" target="_blank" rel="noopener" data-i18n="heroBtn2">访问 OPEA</a>
       </div>
     </div>
   </section>
 
   <section id="about" class="anchor-offset">
     <div class="container">
-      <h2 class="section-title" data-i18n="aboutTitle">联盟简介</h2>
-      <p class="section-desc" data-i18n="aboutDesc">
-        COIA 汇聚产业链上下游伙伴，围绕算力、模型、工具链与行业应用开展协同创新，
-        通过开放合作加速 AI 技术在千行百业落地。
+      <h2 class="section-title" data-i18n="aboutTitle">成立背景</h2>
+      <p class="section-desc" data-i18n="aboutP1">
+        随着 AI 与大模型快速发展，应用与落地成为产业关键。为促进技术在中国企业落地、孵化更多人工智能应用项目、扶持 AI 领域创新企业，由中兴通讯、英特尔中国、中国联通、字节跳动、新华三、神州数码、中国移动、阿里云、中国信通院等单位筹备发起开放智算产业联盟（COIA）。
       </p>
+      <p class="section-desc" style="margin-top:10px" data-i18n="aboutP2">
+        2024 年，Linux 基金会 LF AI & Data 发起企业级开源平台项目 OPEA。OPEA 聚焦高效生成式 AI 技术与工作流集成，被誉为 AI 领域的重要开放基础设施。OPEA 已作为 COIA 的种子项目之一，为企业级 AI 应用落地提供支撑。
+      </p>
+      <div class="highlight" data-i18n="aboutHighlight">
+        在 LF AI & Data 及中国开源软件推进联盟指导下，联盟发起企业级 AI 落地研讨会与筹备大会，得到 40 余家中外企业支持。
+      </div>
     </div>
   </section>
 
-  <section id="focus" class="anchor-offset">
+  <section id="org" class="anchor-offset">
     <div class="container">
-      <h2 class="section-title" data-i18n="focusTitle">重点方向</h2>
-      <div class="grid">
+      <h2 class="section-title" data-i18n="orgTitle">组织架构</h2>
+      <p class="section-desc" data-i18n="orgDesc">
+        联盟设有理事会、秘书处、专家顾问委员会、技术委员会、外联委员会、安全委员会等机构，推动产业协同发展并统筹资源。
+      </p>
+
+      <div class="grid grid-3" style="margin-top:18px">
         <article class="card">
-          <h3 data-i18n="f1Title">开放技术生态</h3>
-          <p data-i18n="f1Desc">推动开源框架、算子库、工具链协同演进，提升产业互操作能力。</p>
+          <h3 data-i18n="c1Title">理事会</h3>
+          <p data-i18n="c1Desc">联盟最高决策机构，负责战略方向、重大事项决策与监督，审议年度计划与预算。</p>
         </article>
         <article class="card">
-          <h3 data-i18n="f2Title">标准与评测体系</h3>
-          <p data-i18n="f2Desc">共建模型评测、推理性能、数据治理等标准，支撑规模化应用部署。</p>
+          <h3 data-i18n="c2Title">秘书处</h3>
+          <p data-i18n="c2Desc">联盟常设执行机构，负责日常运营、组织会议、协调委员会工作与外部联络。</p>
         </article>
         <article class="card">
-          <h3 data-i18n="f3Title">行业应用落地</h3>
-          <p data-i18n="f3Desc">聚焦政企、金融、制造、教育等场景，打造可复制的示范案例。</p>
+          <h3 data-i18n="c3Title">专家顾问委员会</h3>
+          <p data-i18n="c3Desc">由学者、技术专家与产业领袖组成，提供战略咨询、技术评估与方向建议。</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="c4Title">技术委员会（TOC）</h3>
+          <p data-i18n="c4Desc">推动技术研发、标准协作与路线图制定，促进成果转化和产业应用。</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="c5Title">外联委员会</h3>
+          <p data-i18n="c5Desc">负责生态合作与对外传播，推进跨行业协同与国际交流。</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="c6Title">安全委员会</h3>
+          <p data-i18n="c6Desc">聚焦开源供应链安全、开源许可证与知识产权研究，为成员提供专业支持。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="leaders" class="anchor-offset leaders">
+    <div class="container">
+      <h2 class="section-title" data-i18n="leadersTitle">机构负责人（节选）</h2>
+      <div class="grid grid-2" style="margin-top:18px">
+        <article class="card">
+          <h4 data-i18n="l1Title">理事会（理事单位）</h4>
+          <ul id="l1"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l2Title">专家顾问委员会</h4>
+          <ul id="l2"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l3Title">秘书处</h4>
+          <ul id="l3"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l4Title">技术委员会（TOC）</h4>
+          <ul id="l4"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l5Title">外联委员会</h4>
+          <ul id="l5"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l6Title">安全委员会</h4>
+          <ul id="l6"></ul>
         </article>
       </div>
     </div>
@@ -185,94 +211,244 @@
 
   <section id="plan" class="anchor-offset">
     <div class="container">
-      <h2 class="section-title" data-i18n="planTitle">年度计划</h2>
-      <div class="timeline">
-        <div class="timeline-item"><b data-i18n="p1Time">Q1</b>：<span data-i18n="p1Text">发布联盟工作组与合作机制。</span></div>
-        <div class="timeline-item"><b data-i18n="p2Time">Q2</b>：<span data-i18n="p2Text">启动标准草案与联合测试。</span></div>
-        <div class="timeline-item"><b data-i18n="p3Time">Q3</b>：<span data-i18n="p3Text">形成行业示范项目并公开案例。</span></div>
-        <div class="timeline-item"><b data-i18n="p4Time">Q4</b>：<span data-i18n="p4Text">发布年度白皮书与成果路线图。</span></div>
+      <h2 class="section-title" data-i18n="planTitle">3-5 年远景规划</h2>
+      <p class="section-desc" data-i18n="planDesc">以下为联盟阶段性目标（根据附件资料整理）：</p>
+
+      <div class="table-wrap" style="margin-top:16px">
+        <table>
+          <thead>
+            <tr>
+              <th data-i18n="tCol1">联盟目标</th>
+              <th>2024-2025</th>
+              <th>2025-2027</th>
+              <th>2027-2029</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-i18n="tR1K">会员数（研究企业/机构/用户）</td>
+              <td data-i18n="tR1C1">到 25Q4，联盟会员总数达到 50 家</td>
+              <td data-i18n="tR1C2">到 27Q4，联盟会员总数达到 200 家</td>
+              <td data-i18n="tR1C3">5 年内，联盟会员总数达到 500 家</td>
+            </tr>
+            <tr>
+              <td data-i18n="tR2K">最终用户数（使用联盟开源项目）</td>
+              <td data-i18n="tR2C1">到 25Q4，已应用用户数达到 100 个</td>
+              <td data-i18n="tR2C2">到 27Q4，已应用用户数达到 500 个</td>
+              <td data-i18n="tR2C3">5 年内，最终用户数达到 800 个</td>
+            </tr>
+            <tr>
+              <td data-i18n="tR3K">行业案例数</td>
+              <td data-i18n="tR3C1">到 25Q4，行业案例达到 10 个</td>
+              <td data-i18n="tR3C2">到 27Q4，行业案例达到 50+ 个</td>
+              <td data-i18n="tR3C3">5 年内，行业案例达到 100+ 个</td>
+            </tr>
+            <tr>
+              <td data-i18n="tR4K">开发者数量（新增）</td>
+              <td data-i18n="tR4C1">到 25Q4，新增开发者 15+（Committer/Contributor）</td>
+              <td data-i18n="tR4C2">到 27Q4，新增开发者 35+</td>
+              <td data-i18n="tR4C3">5 年内，新增开发者 50+</td>
+            </tr>
+            <tr>
+              <td data-i18n="tR5K">外部贡献公司数（新增）</td>
+              <td data-i18n="tR5C1">到 25Q4，新增公司 5+</td>
+              <td data-i18n="tR5C2">到 27Q4，新增公司 7+</td>
+              <td data-i18n="tR5C3">5 年内，新增公司 10+</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
   <section id="join" class="anchor-offset">
     <div class="container">
-      <h2 class="section-title" data-i18n="joinTitle">加入我们</h2>
-      <p class="section-desc" data-i18n="joinDesc">
-        欢迎算力基础设施、模型平台、应用厂商及科研机构加入，共建开放智算新生态。
-      </p>
+      <div class="card">
+        <h2 class="section-title" style="margin-top:0" data-i18n="joinTitle">加入联盟</h2>
+        <p class="section-desc" data-i18n="joinDesc">
+          欢迎企业、高校、科研机构与开源社区参与 COIA 生态共建。您可通过秘书处提交会员申请与合作意向。
+        </p>
+        <p class="section-desc" style="margin-top:10px">
+          Email: <a href="mailto:contact@coia.org.cn" style="color:var(--brand-dark);font-weight:600">contact@coia.org.cn</a>
+        </p>
+      </div>
     </div>
   </section>
 
   <footer class="footer">
-    <div class="container" data-i18n="foot">© 2026 COIA. 保留所有权利。</div>
+    <div class="container">
+      <div class="brand">
+        <img src="coia-logo.png" alt="COIA Logo" onerror="this.style.display='none'" />
+        <div>
+          <div style="font-weight:700" data-i18n="footName">开放智算产业联盟 COIA</div>
+          <div class="small" data-i18n="footDesc">Open, Cooperative, Intelligent Industry Computing</div>
+        </div>
+      </div>
+      <p class="small" style="margin-top:14px" data-i18n="footCopy">© 2026 COIA. All rights reserved.</p>
+    </div>
   </footer>
 
   <script>
+    const leaderData = {
+      zh: {
+        l1: [
+          "字节跳动、中国移动、中国联通、神州数码、新华三、英特尔中国、龙蜥社区（阿里云）、统信软件、中兴通讯（按名称字母顺序）"
+        ],
+        l2: [
+          "主席：陆首群（原国务院信息办常务副主任）",
+          "成员：Ibrahim Haddad（Linux 基金会战略副总裁）",
+          "成员：何建宗（香港科协会长）",
+          "成员：张泽松（香港城市大学副校长）",
+          "成员：蒋涛（CSDN 创始人、总裁）",
+          "成员：林咏华（智源研究院副院长、总工）"
+        ],
+        l3: [
+          "秘书长：孟伟（LF AI & Data 董事会主席）",
+          "副秘书长：谭中意（COPU 副秘书长、开放原子基金会 TOC 主席）",
+          "成员：徐顺利（英特尔）、袁丽雅（中兴）、王珊（中兴）、王君（香港科协）"
+        ],
+        l4: [
+          "主席：王庆（英特尔研发总监、OIF 个人独立董事）",
+          "副主席：王长金（中兴通讯智算研发总监）",
+          "委员：王强、林演、莫晶晶、岳龙广、陈燕军、王耀华、沈海豪、余跃、王璞"
+        ],
+        l5: [
+          "主席：杨轩（Linux 基金会亚太区副总裁）",
+          "副主席：孟迎霞（CSDN 副总裁、总编）",
+          "副主席：金美琴（阿里云产品运营专家）",
+          "成员：唐松龙（开源高校）、薛冰（蜚语科技）"
+        ],
+        l6: [
+          "主席：杨丽蕴（电子四院软件中心云计算研究室主任）",
+          "副主席：陶冶（国浩律师（南京）事务所合伙人）"
+        ]
+      },
+      en: {
+        l1: [
+          "Board member organizations: ByteDance, China Mobile, China Unicom, Digital China, H3C, Intel China, OpenAnolis (Alibaba Cloud), UnionTech, ZTE (alphabetical order)."
+        ],
+        l2: [
+          "Chair: Lu Shouqun (Former Executive Deputy Director, State Council Information Office)",
+          "Member: Ibrahim Haddad (SVP, Linux Foundation)",
+          "Member: Ho Kin-chung (President, Hong Kong IT Joint Council)",
+          "Member: Zhang Zesong (Vice President, City University of Hong Kong)",
+          "Member: Jiang Tao (Founder & President, CSDN)",
+          "Member: Lin Yonghua (Vice President & Chief Engineer, BAAI)"
+        ],
+        l3: [
+          "Secretary-General: Meng Wei (Chair, LF AI & Data Board)",
+          "Deputy Secretary-General: Tan Zhongyi (Deputy Secretary-General, COPU; TOC Chair, OpenAtom Foundation)",
+          "Members: Xu Shunli, Yuan Liya, Wang Shan, Wang Jun"
+        ],
+        l4: [
+          "Chair: Wang Qing (R&D Director, Intel; Independent Director, OIF)",
+          "Vice Chair: Wang Changjin (Director of Intelligent Computing R&D, ZTE)",
+          "Committee Members: Wang Qiang, Lin Yan, Mo Jingjing, Yue Longguang, Chen Yanjun, Wang Yaohua, Shen Haihao, Yu Yue, Wang Pu"
+        ],
+        l5: [
+          "Chair: Yang Xuan (VP, APAC, Linux Foundation)",
+          "Vice Chairs: Meng Yingxia (VP, CSDN), Jin Meiqin (Alibaba Cloud)",
+          "Members: Tang Songlong, Xue Bing"
+        ],
+        l6: [
+          "Chair: Yang Liyun (Director, Software Center Cloud Lab, CEPREI)",
+          "Vice Chair: Tao Ye (Partner, Grandall Law Firm Nanjing)"
+        ]
+      }
+    };
+
     const i18n = {
       zh: {
         siteName:"开放智算产业联盟",
-        navAbout:"联盟简介", navFocus:"重点方向", navPlan:"年度计划", navJoin:"加入我们",
+        navAbout:"联盟简介", navOrg:"组织架构", navLeaders:"负责人", navPlan:"联盟规划", navJoin:"加入我们",
         heroTitle:"开放智算产业联盟（COIA）",
         heroDesc:"面向企业级 AI 与大模型落地，构建开放、协同、可持续的产业生态，推动技术创新、标准共建与应用规模化。",
-        heroBtn1:"申请加入", heroBtn2:"了解更多",
-        aboutTitle:"联盟简介",
-        aboutDesc:"COIA 汇聚产业链上下游伙伴，围绕算力、模型、工具链与行业应用开展协同创新，通过开放合作加速 AI 技术在千行百业落地。",
-        focusTitle:"重点方向",
-        f1Title:"开放技术生态", f1Desc:"推动开源框架、算子库、工具链协同演进，提升产业互操作能力。",
-        f2Title:"标准与评测体系", f2Desc:"共建模型评测、推理性能、数据治理等标准，支撑规模化应用部署。",
-        f3Title:"行业应用落地", f3Desc:"聚焦政企、金融、制造、教育等场景，打造可复制的示范案例。",
-        planTitle:"年度计划",
-        p1Time:"Q1", p1Text:"发布联盟工作组与合作机制。",
-        p2Time:"Q2", p2Text:"启动标准草案与联合测试。",
-        p3Time:"Q3", p3Text:"形成行业示范项目并公开案例。",
-        p4Time:"Q4", p4Text:"发布年度白皮书与成果路线图。",
-        joinTitle:"加入我们",
-        joinDesc:"欢迎算力基础设施、模型平台、应用厂商及科研机构加入，共建开放智算新生态。",
-        foot:"© 2026 COIA. 保留所有权利。"
+        heroBtn1:"了解联盟", heroBtn2:"访问 OPEA",
+        aboutTitle:"成立背景",
+        aboutP1:"随着 AI 与大模型快速发展，应用与落地成为产业关键。为促进技术在中国企业落地、孵化更多人工智能应用项目、扶持 AI 领域创新企业，由中兴通讯、英特尔中国、中国联通、字节跳动、新华三、神州数码、中国移动、阿里云、中国信通院等单位筹备发起开放智算产业联盟（COIA）。",
+        aboutP2:"2024 年，Linux 基金会 LF AI & Data 发起企业级开源平台项目 OPEA。OPEA 聚焦高效生成式 AI 技术与工作流集成，被誉为 AI 领域的重要开放基础设施。OPEA 已作为 COIA 的种子项目之一，为企业级 AI 应用落地提供支撑。",
+        aboutHighlight:"在 LF AI & Data 及中国开源软件推进联盟指导下，联盟发起企业级 AI 落地研讨会与筹备大会，得到 40 余家中外企业支持。",
+        orgTitle:"组织架构",
+        orgDesc:"联盟设有理事会、秘书处、专家顾问委员会、技术委员会、外联委员会、安全委员会等机构，推动产业协同发展并统筹资源。",
+        c1Title:"理事会", c1Desc:"联盟最高决策机构，负责战略方向、重大事项决策与监督，审议年度计划与预算。",
+        c2Title:"秘书处", c2Desc:"联盟常设执行机构，负责日常运营、组织会议、协调委员会工作与外部联络。",
+        c3Title:"专家顾问委员会", c3Desc:"由学者、技术专家与产业领袖组成，提供战略咨询、技术评估与方向建议。",
+        c4Title:"技术委员会（TOC）", c4Desc:"推动技术研发、标准协作与路线图制定，促进成果转化和产业应用。",
+        c5Title:"外联委员会", c5Desc:"负责生态合作与对外传播，推进跨行业协同与国际交流。",
+        c6Title:"安全委员会", c6Desc:"聚焦开源供应链安全、开源许可证与知识产权研究，为成员提供专业支持。",
+        leadersTitle:"机构负责人（节选）",
+        l1Title:"理事会（理事单位）", l2Title:"专家顾问委员会", l3Title:"秘书处", l4Title:"技术委员会（TOC）", l5Title:"外联委员会", l6Title:"安全委员会",
+        planTitle:"3-5 年远景规划", planDesc:"以下为联盟阶段性目标（根据附件资料整理）：",
+        tCol1:"联盟目标", tR1K:"会员数（研究企业/机构/用户）", tR1C1:"到 25Q4，联盟会员总数达到 50 家", tR1C2:"到 27Q4，联盟会员总数达到 200 家", tR1C3:"5 年内，联盟会员总数达到 500 家",
+        tR2K:"最终用户数（使用联盟开源项目）", tR2C1:"到 25Q4，已应用用户数达到 100 个", tR2C2:"到 27Q4，已应用用户数达到 500 个", tR2C3:"5 年内，最终用户数达到 800 个",
+        tR3K:"行业案例数", tR3C1:"到 25Q4，行业案例达到 10 个", tR3C2:"到 27Q4，行业案例达到 50+ 个", tR3C3:"5 年内，行业案例达到 100+ 个",
+        tR4K:"开发者数量（新增）", tR4C1:"到 25Q4，新增开发者 15+（Committer/Contributor）", tR4C2:"到 27Q4，新增开发者 35+", tR4C3:"5 年内，新增开发者 50+",
+        tR5K:"外部贡献公司数（新增）", tR5C1:"到 25Q4，新增公司 5+", tR5C2:"到 27Q4，新增公司 7+", tR5C3:"5 年内，新增公司 10+",
+        joinTitle:"加入联盟", joinDesc:"欢迎企业、高校、科研机构与开源社区参与 COIA 生态共建。您可通过秘书处提交会员申请与合作意向。",
+        footName:"开放智算产业联盟 COIA", footDesc:"开放 · 协同 · 智算产业", footCopy:"© 2026 COIA. 保留所有权利。"
       },
       en: {
-        siteName:"COIA",
-        navAbout:"About", navFocus:"Focus", navPlan:"Plan", navJoin:"Join",
+        siteName:"Cooperative Open Intelligent Industry Alliance",
+        navAbout:"About", navOrg:"Organization", navLeaders:"Leadership", navPlan:"Roadmap", navJoin:"Join",
         heroTitle:"COIA — Cooperative Open Intelligent Industry Alliance",
-        heroDesc:"Focused on enterprise AI and LLM adoption, COIA builds an open and collaborative ecosystem for innovation, standards, and scaled applications.",
-        heroBtn1:"Apply to Join", heroBtn2:"Learn More",
-        aboutTitle:"About COIA",
-        aboutDesc:"COIA connects stakeholders across the AI value chain to advance compute, models, toolchains, and real-world applications through open collaboration.",
-        focusTitle:"Key Focus Areas",
-        f1Title:"Open Technology Ecosystem", f1Desc:"Co-develop open frameworks, operators, and toolchains to improve interoperability.",
-        f2Title:"Standards & Evaluation", f2Desc:"Build standards for model evaluation, inference performance, and data governance.",
-        f3Title:"Industry Adoption", f3Desc:"Deliver replicable AI best practices across public sector, finance, manufacturing, and education.",
-        planTitle:"Annual Roadmap",
-        p1Time:"Q1", p1Text:"Launch working groups and collaboration mechanisms.",
-        p2Time:"Q2", p2Text:"Start standards drafts and joint testing programs.",
-        p3Time:"Q3", p3Text:"Publish demonstrative cross-industry use cases.",
-        p4Time:"Q4", p4Text:"Release annual whitepaper and roadmap.",
-        joinTitle:"Join Us",
-        joinDesc:"We welcome infrastructure providers, model platforms, application vendors, and research institutions.",
-        foot:"© 2026 COIA. All rights reserved."
+        heroDesc:"Focused on enterprise AI and LLM adoption, COIA builds an open and collaborative ecosystem to accelerate innovation, standards, and large-scale application.",
+        heroBtn1:"About COIA", heroBtn2:"Visit OPEA",
+        aboutTitle:"Background",
+        aboutP1:"With rapid growth of AI and large models, practical enterprise adoption has become essential. COIA was jointly initiated by leading organizations including ZTE, Intel China, China Unicom, ByteDance, H3C, Digital China, China Mobile, Alibaba Cloud, and CAICT.",
+        aboutP2:"In 2024, LF AI & Data launched OPEA (Open Platform for Enterprise AI), an open framework for integrating efficient GenAI technologies and workflows. OPEA is one of COIA’s seed projects for enterprise implementation.",
+        aboutHighlight:"Under guidance from LF AI & Data and China OSS Promotion Union, COIA held preparation forums on enterprise AI deployment with support from over 40 organizations.",
+        orgTitle:"Organization",
+        orgDesc:"COIA includes a Board, Secretariat, Expert Advisory Committee, Technical Committee, External Relations Committee, and Security Committee.",
+        c1Title:"Board", c1Desc:"Top decision-making body overseeing strategy, major decisions, annual planning, and budget review.",
+        c2Title:"Secretariat", c2Desc:"Standing executive body responsible for operations, meeting organization, coordination, and outreach.",
+        c3Title:"Expert Advisory Committee", c3Desc:"Industry scholars and experts providing strategic and technical guidance.",
+        c4Title:"Technical Committee (TOC)", c4Desc:"Leads technical R&D, standards collaboration, roadmap planning, and technology transfer.",
+        c5Title:"External Relations Committee", c5Desc:"Drives partnerships, ecosystem outreach, and cross-industry collaboration.",
+        c6Title:"Security Committee", c6Desc:"Focuses on open-source supply chain security, licensing, and IP advisory support.",
+        leadersTitle:"Leadership (Selected)",
+        l1Title:"Board (Member Organizations)", l2Title:"Expert Advisory Committee", l3Title:"Secretariat", l4Title:"Technical Committee (TOC)", l5Title:"External Relations Committee", l6Title:"Security Committee",
+        planTitle:"3-5 Year Vision", planDesc:"Indicative stage goals based on the shared material:",
+        tCol1:"Goal", tR1K:"Members", tR1C1:"By 25Q4: 50 members", tR1C2:"By 27Q4: 200 members", tR1C3:"Within 5 years: 500 members",
+        tR2K:"End Users (using alliance OSS projects)", tR2C1:"By 25Q4: 100 users", tR2C2:"By 27Q4: 500 users", tR2C3:"Within 5 years: 800 users",
+        tR3K:"Industry Cases", tR3C1:"By 25Q4: 10 cases", tR3C2:"By 27Q4: 50+ cases", tR3C3:"Within 5 years: 100+ cases",
+        tR4K:"Developers (new)", tR4C1:"By 25Q4: 15+ new committers/contributors", tR4C2:"By 27Q4: 35+ new developers", tR4C3:"Within 5 years: 50+ new developers",
+        tR5K:"External Contributing Companies (new)", tR5C1:"By 25Q4: 5+", tR5C2:"By 27Q4: 7+", tR5C3:"Within 5 years: 10+",
+        joinTitle:"Join COIA", joinDesc:"Enterprises, universities, research institutes, and open-source communities are welcome to co-build the COIA ecosystem.",
+        footName:"COIA — Cooperative Open Intelligent Industry Alliance", footDesc:"Open · Collaborative · Intelligent Computing", footCopy:"© 2026 COIA. All rights reserved."
       }
     };
 
     let lang = "zh";
-    const langBtn = document.getElementById("langBtn");
 
-    function renderLang() {
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.dataset.i18n;
-        if (i18n[lang][key]) el.textContent = i18n[lang][key];
+    function renderLeaders(){
+      ["l1","l2","l3","l4","l5","l6"].forEach(id=>{
+        const ul = document.getElementById(id);
+        ul.innerHTML = "";
+        leaderData[lang][id].forEach(item=>{
+          const li = document.createElement("li");
+          li.textContent = item;
+          ul.appendChild(li);
+        });
       });
-      langBtn.textContent = lang === "zh" ? "EN" : "中";
-      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
     }
 
-    langBtn.addEventListener("click", () => {
+    function renderText(){
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if(i18n[lang][key]) el.textContent = i18n[lang][key];
+      });
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = lang === "zh" ? "开放智算产业联盟 COIA" : "COIA Alliance";
+      document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
+      renderLeaders();
+    }
+
+    document.getElementById("langBtn").addEventListener("click", ()=>{
       lang = lang === "zh" ? "en" : "zh";
-      renderLang();
+      renderText();
     });
 
-    renderLang();
+    renderText();
   </script>
-
-
-</body></html>
+</body>
+</html>
