@@ -98,6 +98,13 @@
           date: "2024年12月18日",
           summary: "2024年12月18日，在Linux基金会AI&Data、中国开源软件推进联盟的支持与指导之下，开放智算产业联盟（COIA）成立大会在北京金隅喜来登酒店正式举办。首批四十余家成员单位共同见证了这一历史性时刻。",
           detailUrl: "news-detail.html?id=foundation-conference"
+        },
+        {
+          id: "opea-un-competition",
+          title: "开放智算产业联盟携手联合国AI for Good全球峰会发起OPEA竞赛",
+          date: "2025年7月9日",
+          summary: "2025年7月9日，开放智算产业联盟联合\"AIGC青年大学生就业创业促进行动执委会\"，在联合国AI for Good全球峰会提交以OPEA为核心的赛道提案并顺利完成答辩，获得大会认可。标志着OPEA作为联盟收录的开源项目，已经成为全球AI创新发展的重要组成部分。",
+          detailUrl: "news-detail2.html?id=opea-un-competition"
         }
       ],
       en: [
@@ -107,6 +114,13 @@
           date: "December 18, 2024",
           summary: "On December 18, 2024, with the support of LF AI & Data and China OSS Promotion Union, the inaugural conference of the Cooperative Open Intelligent Industry Alliance (COIA) was officially held at the Beijing Jinmao Sheraton Hotel. The first 40+ member units witnessed this historic moment.",
           detailUrl: "news-detail.html?id=foundation-conference"
+        },
+        {
+          id: "opea-un-competition",
+          title: "COIA Launches OPEA Competition at UN AI for Good Global Summit",
+          date: "July 9, 2025",
+          summary: "On July 9, 2025, COIA, in collaboration with the \"AIGC Youth Employment and Entrepreneurship Action Committee,\" submitted a track proposal centered on OPEA at the UN AI for Good Global Summit. After a successful defense, the proposal received recognition from the conference, marking OPEA as a key component of global AI innovation.",
+          detailUrl: "news-detail2.html?id=opea-un-competition"
         }
       ]
     };
@@ -134,7 +148,7 @@
         
         newsItem.innerHTML = `
           <h3 class="news-title">${item.title}</h3>
-          <span class="news-date">${item.date}</span>
+          <span class="news-date">📅 ${item.date}</span>
           <p class="news-summary">${item.summary}</p>
         `;
         
