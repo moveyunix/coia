@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>新闻详情 - COIA</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#10233f;
+      --muted:#4f647d;
+      --brand:#10bcd6;
+      --brand-dark:#0a7fa0;
+      --line:#d9e3ef;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;background:var(--bg);color:var(--text);}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:0 auto}
+    .header{
+      background:linear-gradient(135deg, #102544 0%, #0c1a31 45%, #153763 100%);
+      color:#fff;padding:32px 0 40px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .header h1{margin:0 0 8px;font-size:1.8rem}
+    .back-link{
+      display:inline-block;margin-bottom:20px;color:#10bcd6;
+      border:1px solid #10bcd6;border-radius:999px;padding:6px 16px;
+      font-size:.85rem;transition:.2s;
+    }
+    .back-link:hover{background:rgba(16,188,214,.1)}
+    .article{
+      background:var(--card);border-radius:20px;padding:40px;
+      margin:40px 0;box-shadow:0 4px 20px rgba(0,0,0,.04);
+    }
+    .article h1{
+      font-size:1.8rem;margin:0 0 16px;color:var(--text);
+    }
+    .article-date{
+      color:var(--brand-dark);font-size:.9rem;margin-bottom:24px;display:block;
+      padding-bottom:16px;border-bottom:1px solid var(--line);
+    }
+    .article-content{
+      color:var(--text);line-height:1.8;
+    }
+    .article-content h2{
+      font-size:1.4rem;margin:32px 0 16px;color:var(--text);
+    }
+    .article-content h3{
+      font-size:1.2rem;margin:24px 0 12px;color:var(--text);
+    }
+    .article-content p{
+      margin:0 0 16px;color:var(--muted);
+    }
+    .article-content .speech{
+      background:#f0f7fc;padding:20px 24px;border-radius:12px;
+      margin:24px 0;border-left:4px solid var(--brand);
+    }
+    .article-content .member-list{
+      display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;
+    }
+    .article-content .member-tag{
+      background:#eefbff;padding:4px 12px;border-radius:20px;
+      font-size:.85rem;color:var(--brand-dark);
+    }
+    .footer{
+      background:#0a1830;color:#b8c9e5;padding:24px 0;text-align:center;margin-top:20px;
+    }
+    .lang-btn{
+      position:fixed;bottom:20px;right:20px;
+      background:var(--brand);color:#062430;border:none;border-radius:40px;
+      padding:10px 18px;cursor:pointer;font-weight:700;z-index:100;
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
+    }
+    @media (max-width:700px){
+      .article{padding:24px;}
+      .article h1{font-size:1.4rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <a href="news.html" class="back-link" data-i18n="backLink">← 返回新闻列表</a>
+      <h1 data-i18n="pageTitle">新闻详情</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="article" id="articleContent">
+      <!-- 动态加载内容 -->
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footText">© 2026 COIA. 保留所有权利。</p>
+    </div>
+  </footer>
+
+  <button class="lang-btn" id="langBtn">EN</button>
+
+  <script>
+    const detailData = {
+      zh: {
+        title: "推进人工智能新生态！开放智算产业联盟成立大会圆满落幕！",
+        date: "2024年12月18日",
+        content: `
+          <p>随着中国积极推动人工智能与实体经济的深度融合，助力传统产业的转型升级，可以预见的是人工智能将继续深刻改变全球经济和社会格局。而人工智能在实际应用和落地方面的实践，也将成为未来的发展重点。</p>
+          
+          <p>基于此，2024年12月18日，在Linux基金会AI&Data、中国开源软件推进联盟的支持与指导之下，由字节跳动、中国移动、中国联通、神州数码、新华三、英特尔、龙蜥社区、统信软件、中兴通讯，协同智源研究院、中国信通院、电子四院、鹏城实验室等企事业单位（按单位名称字母排序）筹备发起的开放智算产业联盟（简称COIA）成立大会，在北京金隅喜来登酒店，正式举办。</p>
+          
+          <div class="speech">
+            <strong>📌 首批四十余家成员单位</strong>
+            <div class="member-list">
+              <span class="member-tag">字节跳动</span><span class="member-tag">中国移动</span><span class="member-tag">中国联通</span>
+              <span class="member-tag">神州数码</span><span class="member-tag">新华三</span><span class="member-tag">英特尔</span>
+              <span class="member-tag">龙蜥社区</span><span class="member-tag">统信软件</span><span class="member-tag">中兴通讯</span>
+              <span class="member-tag">智源研究院</span><span class="member-tag">中国信通院</span><span class="member-tag">电子四院</span>
+              <span class="member-tag">鹏城实验室</span><span class="member-tag">阿里云</span><span class="member-tag">联想</span>
+              <span class="member-tag">浪潮信息</span><span class="member-tag">百度智能云</span><span class="member-tag">华为</span>
+              <span class="member-tag">腾讯云</span><span class="member-tag">天数智芯</span><span class="member-tag">燧原科技</span>
+              <span class="member-tag">昆仑芯</span><span class="member-tag">沐曦</span><span class="member-tag">摩尔线程</span>
+              <span class="member-tag">中科可控</span><span class="member-tag">中科曙光</span><span class="member-tag">安恒信息</span>
+              <span class="member-tag">绿盟科技</span><span class="member-tag">启明星辰</span><span class="member-tag">奇安信</span>
+              <span class="member-tag">深信服</span><span class="member-tag">亚信安全</span><span class="member-tag">天融信</span>
+              <span class="member-tag">永信至诚</span><span class="member-tag">知道创宇</span><span class="member-tag">360数字安全</span>
+              <span class="member-tag">CSDN</span><span class="member-tag">开源中国</span><span class="member-tag">思否</span>
+              <span class="member-tag">极客邦科技</span><span class="member-tag">InfoQ</span>
+            </div>
+          </div>
+          
+          <h2>🎤 开场致辞</h2>
+          <p>活动伊始，联盟邀请到了<strong>顾问委员会主席、原国务院信息办常务副主任、中国"开源之父"陆首群主席</strong>为活动致辞。陆主席祝贺开放智算产业联盟成立，并提到中国未来发展的一个大重点会是"开源+人工智能"，即用基于开源的人工智能推动数字化转型跟智能化重构，发展新质生产力，从而达到促进国民经济快速稳定发展的作用。</p>
+          
+          <p>紧接着，<strong>Linux基金会战略副总裁Ibrahim Haddad先生</strong>以视频形式带来了他的致辞，分享了关于AI技术落地与全球协作的深刻洞见。</p>
+          
+          <h2>✨ 成立仪式</h2>
+          <p>在开放智算产业联盟成立仪式上，联盟副理事长单位代表共同上台完成成立仪式，并为联盟各个成员单位颁发聘书。这标志着开放智算产业联盟正式扬帆起航，未来将持续致力于通过开放协作、技术共享和产业赋能，加速人工智能技术的落地应用。</p>
+          
+          <h2>📋 2025年联盟工作规划</h2>
+          <p><strong>Linux基金会AI&Data基金会董事会主席、开放智算产业联盟秘书长孟伟先生</strong>分享了《2025年联盟工作规划》。他提到，联盟技术范围主要聚焦于AI智算平台及AI基础资源服务相关领域。未来联盟规划主要有四点：</p>
+          <ul>
+            <li><strong>会员招募：</strong>在现有46家会员基础上，2025年有质量地发展会员数量达到70家以上；</li>
+            <li><strong>项目收录：</strong>鼓励已有项目捐赠到国内外知名开源基金会，启动2个以上标准项目落地；</li>
+            <li><strong>外联运作：</strong>规划在2025年10-11月份举办联盟峰会，联合KubeCon、WAIC等国际活动；</li>
+            <li><strong>产业落地：</strong>启动与政府、企事业单位讨论合作，推进AI开源项目在产业的落地。</li>
+          </ul>
+          <p>孟伟先生引用《大学》"知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得"，表示中国开源人经过十余载探索，期待在AI领域有所得。联盟将在2025年把"开放、包容、普惠"的理念落到实处。</p>
+          
+          <h2>🎯 主题演讲精选</h2>
+          
+          <h3>企业AI开放平台总结与展望</h3>
+          <p><strong>英特尔中国软件技术事业部开放生态负责人陈春曦</strong>介绍了英特尔与Linux基金会AI&Data子基金会合作发起的OPEA企业级开源平台项目。OPEA项目已发布1.0版本，得到英伟达等业界伙伴支持，致力于端到端解决方案。未来英特尔将积极参与联盟工作，推动全球与中国的联盟伙伴加入，帮助更多企业在AI场景落地。</p>
+          
+          <h3>跨越幻灭周期，怀疑还是行动？</h3>
+          <p><strong>神州数码副总裁、CTO李刚先生</strong>分享了市场端的矛盾现象。他指出客户面临场景繁杂、精度不足、算力成本三大问题。通过知识治理、算力优化和场景选择，可以推动AI项目从探索阶段向技术突破和业务流整合方向发展，呼吁业界从怀疑转向行动。</p>
+          
+          <h3>阿里云Confidential AI最佳实践</h3>
+          <p><strong>阿里云基础软件系统安全团队架构师张佳</strong>介绍了阿里云Confidential AI解决方案，通过结合PAI EAS和弹性计算等云服务，利用机密计算硬件提供密码学数据加密和隔离能力，全面保障大模型数据安全。未来阿里云将通过开源软件生态、商业解决方案与合规测评推广"Confidential AI As a Service"模式。</p>
+          
+          <h3>智算时代一体机应用思考与实践</h3>
+          <p><strong>中兴通讯智算规划总工、开放智算产业联盟TOC副主席王长金</strong>分享了智算发展趋势：上半场聚焦大模型训练能力，下半场重点将转向如何更好发挥大模型在行业中的应用。他介绍了中兴通讯智算一体机方案，该方案具备多样性算力底座、高性能网络存储、内置主流开源大模型等特点，并支持端到端工作流。</p>
+          
+          <div class="speech">
+            <strong>📢 总结展望</strong>
+            <p style="margin-top:8px;">至此，本次开放智算产业联盟成立大会圆满落幕。联盟的诞生不仅是人工智能、大模型及开源技术发展的全新里程碑，更是一场以开放协作和技术创新为核心的盛会。未来，开放智算产业联盟将携手各个联盟成员共同推动产业智能化的快速发展，为中国乃至全球的智能化进程注入澎湃动力！</p>
+          </div>
+        `
+      },
+      en: {
+        title: "Promoting a New AI Ecosystem: COIA Inaugural Conference Successfully Concluded!",
+        date: "December 18, 2024",
+        content: `
+          <p>As China actively promotes the deep integration of AI with the real economy and facilitates the transformation and upgrading of traditional industries, AI continues to profoundly reshape the global economic and social landscape. The practical application and deployment of AI will become the focal point for future development.</p>
+          
+          <p>On December 18, 2024, with the support and guidance of LF AI & Data and China OSS Promotion Union, the inaugural conference of the Cooperative Open Intelligent Industry Alliance (COIA) was officially held at the Beijing Jinmao Sheraton Hotel. The alliance was initiated by ByteDance, China Mobile, China Unicom, Digital China, H3C, Intel, OpenAnolis, UnionTech, ZTE, together with BAAI, CAICT, CEPREI, Peng Cheng Laboratory, and other organizations.</p>
+          
+          <div class="speech">
+            <strong>📌 First 40+ Member Organizations</strong>
+            <div class="member-list">
+              <span class="member-tag">ByteDance</span><span class="member-tag">China Mobile</span><span class="member-tag">China Unicom</span>
+              <span class="member-tag">Digital China</span><span class="member-tag">H3C</span><span class="member-tag">Intel</span>
+              <span class="member-tag">OpenAnolis</span><span class="member-tag">UnionTech</span><span class="member-tag">ZTE</span>
+              <span class="member-tag">BAAI</span><span class="member-tag">CAICT</span><span class="member-tag">CEPREI</span>
+              <span class="member-tag">Peng Cheng Lab</span><span class="member-tag">Alibaba Cloud</span>
+            </div>
+          </div>
+          
+          <h2>🎤 Opening Remarks</h2>
+          <p>Lu Shouqun, Chairman of the Advisory Committee and former Executive Deputy Director of the State Council Information Office, delivered a speech. He emphasized that "Open Source + AI" will be a major focus for China's future development, driving digital transformation and intelligent reconstruction to develop new productive forces.</p>
+          
+          <p>Ibrahim Haddad, SVP of Linux Foundation, shared his insights on AI technology deployment and global collaboration via video.</p>
+          
+          <h2>✨ Inauguration Ceremony</h2>
+          <p>Representatives from vice-chairman units jointly completed the inauguration ceremony and presented certificates to member units. COIA is committed to accelerating AI application deployment through open collaboration, technology sharing, and industry enablement.</p>
+          
+          <h2>📋 2025 Work Plan</h2>
+          <p>Meng Wei, Secretary-General of COIA and Chairman of LF AI & Data Board, presented the 2025 work plan: member recruitment (70+ by 2025), project incubation (2+ standard projects), external relations (summit in Oct-Nov 2025), and industry deployment (promoting AI open source projects).</p>
+          
+          <h2>🎯 Featured Keynotes</h2>
+          
+          <h3>Enterprise AI Open Platform: Review and Outlook</h3>
+          <p>Chen Chunxi from Intel introduced the OPEA project, an open framework co-launched with LF AI & Data. OPEA 1.0 has been released with support from NVIDIA and other partners.</p>
+          
+          <h3>Crossing the Trough of Disillusionment: Doubt or Action?</h3>
+          <p>Li Gang from Digital China discussed market challenges including complex scenarios, accuracy issues, and computing costs, calling for action from doubt.</p>
+          
+          <h3>Alibaba Cloud Confidential AI Best Practices</h3>
+          <p>Zhang Jia from Alibaba Cloud presented the Confidential AI solution, utilizing trusted execution environments to protect LLM data throughout its lifecycle.</p>
+          
+          <h3>AI Computing All-in-One: Thinking and Practice</h3>
+          <p>Wang Changjin from ZTE shared the company's AI all-in-one solution featuring diverse computing infrastructure, high-performance networking, and built-in mainstream open-source LLMs.</p>
+          
+          <div class="speech">
+            <strong>📢 Conclusion</strong>
+            <p style="margin-top:8px;">COIA will join hands with all member organizations to drive rapid intelligent industrial development, injecting powerful momentum into the intelligent transformation of China and the world!</p>
+          </div>
+        `
+      }
+    };
+
+    let lang = "zh";
+
+    function getUrlParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function renderDetail() {
+      const container = document.getElementById("articleContent");
+      if (!container) return;
+      
+      const data = detailData[lang];
+      container.innerHTML = `
+        <h1>${data.title}</h1>
+        <div class="article-date">📅 ${data.date}</div>
+        <div class="article-content">${data.content}</div>
+      `;
+    }
+
+    function renderText() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const texts = {
+          zh: {
+            backLink: "← 返回新闻列表",
+            pageTitle: "新闻详情",
+            footText: "© 2026 COIA. 保留所有权利。"
+          },
+          en: {
+            backLink: "← Back to News",
+            pageTitle: "News Detail",
+            footText: "© 2026 COIA. All rights reserved."
+          }
+        };
+        if (texts[lang][key]) {
+          el.textContent = texts[lang][key];
+        }
+      });
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = lang === "zh" ? "新闻详情 - COIA" : "News Detail - COIA";
+      document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
+      renderDetail();
+    }
+
+    const urlLang = getUrlParam('lang');
+    if (urlLang && (urlLang === 'zh' || urlLang === 'en')) {
+      lang = urlLang;
+    } else {
+      const savedLang = localStorage.getItem('coia_lang');
+      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
+        lang = savedLang;
+      }
+    }
+    
+    renderText();
+
+    document.getElementById("langBtn").addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      renderText();
+      localStorage.setItem('coia_lang', lang);
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', newUrl);
+    });
+  </script>
+</body>
+</html>

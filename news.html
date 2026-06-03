@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>新闻与活动 - COIA</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#10233f;
+      --muted:#4f647d;
+      --brand:#10bcd6;
+      --brand-dark:#0a7fa0;
+      --line:#d9e3ef;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;background:var(--bg);color:var(--text);}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:0 auto}
+    .header{
+      background:linear-gradient(135deg, #102544 0%, #0c1a31 45%, #153763 100%);
+      color:#fff;padding:32px 0 40px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .header h1{margin:0 0 8px;font-size:1.8rem}
+    .header p{margin:0;opacity:.8}
+    .back-link{
+      display:inline-block;margin-bottom:20px;color:#10bcd6;
+      border:1px solid #10bcd6;border-radius:999px;padding:6px 16px;
+      font-size:.85rem;transition:.2s;
+    }
+    .back-link:hover{background:rgba(16,188,214,.1)}
+    section{padding:40px 0}
+    .section-title{font-size:1.4rem;margin:0 0 24px;border-left:4px solid var(--brand);padding-left:16px}
+    .news-list{
+      display:flex;flex-direction:column;gap:16px;
+    }
+    .news-item{
+      background:var(--card);border:1px solid var(--line);border-radius:14px;
+      padding:20px 24px;transition:all 0.2s ease;cursor:pointer;
+    }
+    .news-item:hover{
+      transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08);
+      border-color:var(--brand);
+    }
+    .news-title{
+      font-size:1.2rem;font-weight:700;color:var(--text);margin:0 0 8px;
+    }
+    .news-date{
+      font-size:.85rem;color:var(--brand-dark);margin-bottom:12px;display:inline-block;
+    }
+    .news-summary{
+      color:var(--muted);line-height:1.6;margin:0;
+    }
+    .footer{
+      background:#0a1830;color:#b8c9e5;padding:24px 0;text-align:center;margin-top:20px;
+    }
+    .lang-btn{
+      position:fixed;bottom:20px;right:20px;
+      background:var(--brand);color:#062430;border:none;border-radius:40px;
+      padding:10px 18px;cursor:pointer;font-weight:700;z-index:100;
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <a href="index.html" class="back-link" data-i18n="backLink">← 返回首页</a>
+      <h1 data-i18n="pageTitle">新闻与活动</h1>
+      <p data-i18n="pageSub">了解 COIA 最新动态</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="news-list" id="newsList">
+        <!-- 动态生成新闻列表 -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footText">© 2026 COIA. 保留所有权利。</p>
+    </div>
+  </footer>
+
+  <button class="lang-btn" id="langBtn">EN</button>
+
+  <script>
+    const newsData = {
+      zh: [
+        {
+          id: "foundation-conference",
+          title: "推进人工智能新生态！开放智算产业联盟成立大会圆满落幕！",
+          date: "2024年12月18日",
+          summary: "2024年12月18日，在Linux基金会AI&Data、中国开源软件推进联盟的支持与指导之下，开放智算产业联盟（COIA）成立大会在北京金隅喜来登酒店正式举办。首批四十余家成员单位共同见证了这一历史性时刻。",
+          detailUrl: "news-detail.html?id=foundation-conference"
+        }
+      ],
+      en: [
+        {
+          id: "foundation-conference",
+          title: "Promoting a New AI Ecosystem: COIA Inaugural Conference Successfully Concluded!",
+          date: "December 18, 2024",
+          summary: "On December 18, 2024, with the support of LF AI & Data and China OSS Promotion Union, the inaugural conference of the Cooperative Open Intelligent Industry Alliance (COIA) was officially held at the Beijing Jinmao Sheraton Hotel. The first 40+ member units witnessed this historic moment.",
+          detailUrl: "news-detail.html?id=foundation-conference"
+        }
+      ]
+    };
+
+    let lang = "zh";
+
+    function getUrlParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function renderNewsList() {
+      const container = document.getElementById("newsList");
+      if (!container) return;
+      
+      const news = newsData[lang];
+      container.innerHTML = "";
+      
+      news.forEach(item => {
+        const newsItem = document.createElement("div");
+        newsItem.className = "news-item";
+        newsItem.onclick = () => {
+          window.location.href = `${item.detailUrl}&lang=${lang}`;
+        };
+        
+        newsItem.innerHTML = `
+          <h3 class="news-title">${item.title}</h3>
+          <span class="news-date">${item.date}</span>
+          <p class="news-summary">${item.summary}</p>
+        `;
+        
+        container.appendChild(newsItem);
+      });
+    }
+
+    function renderText() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const texts = {
+          zh: {
+            backLink: "← 返回首页",
+            pageTitle: "新闻与活动",
+            pageSub: "了解 COIA 最新动态",
+            footText: "© 2026 COIA. 保留所有权利。"
+          },
+          en: {
+            backLink: "← Back to Home",
+            pageTitle: "News & Events",
+            pageSub: "Latest updates from COIA",
+            footText: "© 2026 COIA. All rights reserved."
+          }
+        };
+        if (texts[lang][key]) {
+          el.textContent = texts[lang][key];
+        }
+      });
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = lang === "zh" ? "新闻与活动 - COIA" : "News & Events - COIA";
+      document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
+      renderNewsList();
+    }
+
+    const urlLang = getUrlParam('lang');
+    if (urlLang && (urlLang === 'zh' || urlLang === 'en')) {
+      lang = urlLang;
+    } else {
+      const savedLang = localStorage.getItem('coia_lang');
+      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
+        lang = savedLang;
+      }
+    }
+    
+    renderText();
+
+    document.getElementById("langBtn").addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      renderText();
+      localStorage.setItem('coia_lang', lang);
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', newUrl);
+    });
+  </script>
+</body>
+</html>
