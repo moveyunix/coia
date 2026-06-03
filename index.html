@@ -70,17 +70,6 @@
       border-left:4px solid var(--brand);padding:14px 16px;background:#eefbff;border-radius:8px;
       margin-top:18px;color:#204664;line-height:1.75;
     }
-    .list{margin:0;padding-left:20px;color:var(--muted);line-height:1.85}
-    .list li{margin-bottom:6px}
-    .leaders .card h4{margin:0 0 8px;font-size:1rem}
-    .leaders .card ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.75}
-    .table-wrap{
-      overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;
-    }
-    table{width:100%;border-collapse:collapse;min-width:760px}
-    th,td{padding:14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.65}
-    th{background:#f1f7ff;color:#1f3c63;font-size:.95rem}
-    tr:last-child td{border-bottom:none}
     .footer{
       background:#0a1830;color:#b8c9e5;padding:34px 0 38px;margin-top:20px;
     }
@@ -106,6 +95,7 @@
         <a href="#about" data-i18n="navAbout">联盟简介</a>
         <a href="#org" data-i18n="navOrg">组织架构</a>
         <a href="leaders.html" target="_blank" data-i18n="navLeaders">负责人</a>
+        <a href="news.html" data-i18n="navNews">新闻与活动</a>
         <a href="#join" data-i18n="navJoin">加入我们</a>
         <button class="lang-btn" id="langBtn">EN</button>
       </nav>
@@ -207,7 +197,7 @@
     const i18n = {
       zh: {
         siteName:"开放智算产业联盟",
-        navAbout:"联盟简介", navOrg:"组织架构", navLeaders:"负责人", navJoin:"加入我们",
+        navAbout:"联盟简介", navOrg:"组织架构", navLeaders:"负责人", navNews:"新闻与活动", navJoin:"加入我们",
         heroTitle:"开放智算产业联盟（COIA）",
         heroDesc:"面向企业级 AI 与大模型落地，构建开放、协同、可持续的产业生态，推动技术创新、标准共建与应用规模化。",
         heroBtn1:"了解联盟", heroBtn2:"访问 OPEA",
@@ -228,7 +218,7 @@
       },
       en: {
         siteName:"Cooperative Open Intelligent Industry Alliance",
-        navAbout:"About", navOrg:"Organization", navLeaders:"Leadership", navJoin:"Join",
+        navAbout:"About", navOrg:"Organization", navLeaders:"Leadership", navNews:"News & Events", navJoin:"Join",
         heroTitle:"COIA — Cooperative Open Intelligent Industry Alliance",
         heroDesc:"Focused on enterprise AI and LLM adoption, COIA builds an open and collaborative ecosystem to accelerate innovation, standards, and large-scale application.",
         heroBtn1:"About COIA", heroBtn2:"Visit OPEA",
@@ -260,11 +250,13 @@
       document.title = lang === "zh" ? "开放智算产业联盟 COIA" : "COIA Alliance";
       document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
       
-      // 同时更新导航栏中负责人链接的文本（因为它的 data-i18n 属性已经更新）
-      // 确保新建的 leaders 页面也能继承当前语言（通过 URL 参数传递）
       const leadersLink = document.querySelector('a[href="leaders.html"]');
       if (leadersLink) {
         leadersLink.href = `leaders.html?lang=${lang}`;
+      }
+      const newsLink = document.querySelector('a[href="news.html"]');
+      if (newsLink) {
+        newsLink.href = `news.html?lang=${lang}`;
       }
     }
 
