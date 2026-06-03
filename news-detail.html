@@ -57,12 +57,25 @@
       background:#f0f7fc;padding:20px 24px;border-radius:12px;
       margin:24px 0;border-left:4px solid var(--brand);
     }
-    .article-content .member-list{
-      display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;
+    .member-image-wrapper{
+      margin:20px 0;
+      text-align:center;
+      background:#f8fafc;
+      border-radius:16px;
+      padding:20px;
+      border:1px solid var(--line);
     }
-    .article-content .member-tag{
-      background:#eefbff;padding:4px 12px;border-radius:20px;
-      font-size:.85rem;color:var(--brand-dark);
+    .member-image-wrapper img{
+      max-width:100%;
+      height:auto;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+    }
+    .member-image-caption{
+      margin-top:12px;
+      font-size:.85rem;
+      color:var(--muted);
+      text-align:center;
     }
     .footer{
       background:#0a1830;color:#b8c9e5;padding:24px 0;text-align:center;margin-top:20px;
@@ -111,24 +124,9 @@
           
           <p>基于此，2024年12月18日，在Linux基金会AI&Data、中国开源软件推进联盟的支持与指导之下，由字节跳动、中国移动、中国联通、神州数码、新华三、英特尔、龙蜥社区、统信软件、中兴通讯，协同智源研究院、中国信通院、电子四院、鹏城实验室等企事业单位（按单位名称字母排序）筹备发起的开放智算产业联盟（简称COIA）成立大会，在北京金隅喜来登酒店，正式举办。</p>
           
-          <div class="speech">
-            <strong>📌 首批四十余家成员单位</strong>
-            <div class="member-list">
-              <span class="member-tag">字节跳动</span><span class="member-tag">中国移动</span><span class="member-tag">中国联通</span>
-              <span class="member-tag">神州数码</span><span class="member-tag">新华三</span><span class="member-tag">英特尔</span>
-              <span class="member-tag">龙蜥社区</span><span class="member-tag">统信软件</span><span class="member-tag">中兴通讯</span>
-              <span class="member-tag">智源研究院</span><span class="member-tag">中国信通院</span><span class="member-tag">电子四院</span>
-              <span class="member-tag">鹏城实验室</span><span class="member-tag">阿里云</span><span class="member-tag">联想</span>
-              <span class="member-tag">浪潮信息</span><span class="member-tag">百度智能云</span><span class="member-tag">华为</span>
-              <span class="member-tag">腾讯云</span><span class="member-tag">天数智芯</span><span class="member-tag">燧原科技</span>
-              <span class="member-tag">昆仑芯</span><span class="member-tag">沐曦</span><span class="member-tag">摩尔线程</span>
-              <span class="member-tag">中科可控</span><span class="member-tag">中科曙光</span><span class="member-tag">安恒信息</span>
-              <span class="member-tag">绿盟科技</span><span class="member-tag">启明星辰</span><span class="member-tag">奇安信</span>
-              <span class="member-tag">深信服</span><span class="member-tag">亚信安全</span><span class="member-tag">天融信</span>
-              <span class="member-tag">永信至诚</span><span class="member-tag">知道创宇</span><span class="member-tag">360数字安全</span>
-              <span class="member-tag">CSDN</span><span class="member-tag">开源中国</span><span class="member-tag">思否</span>
-              <span class="member-tag">极客邦科技</span><span class="member-tag">InfoQ</span>
-            </div>
+          <div class="member-image-wrapper">
+            <img src="members-all.png" alt="COIA首批成员单位" onerror="this.src='https://via.placeholder.com/800x600?text=COIA+Members';this.onerror=null;" />
+            <div class="member-image-caption">📋 首批四十余家成员单位</div>
           </div>
           
           <h2>🎤 开场致辞</h2>
@@ -177,15 +175,9 @@
           
           <p>On December 18, 2024, with the support and guidance of LF AI & Data and China OSS Promotion Union, the inaugural conference of the Cooperative Open Intelligent Industry Alliance (COIA) was officially held at the Beijing Jinmao Sheraton Hotel. The alliance was initiated by ByteDance, China Mobile, China Unicom, Digital China, H3C, Intel, OpenAnolis, UnionTech, ZTE, together with BAAI, CAICT, CEPREI, Peng Cheng Laboratory, and other organizations.</p>
           
-          <div class="speech">
-            <strong>📌 First 40+ Member Organizations</strong>
-            <div class="member-list">
-              <span class="member-tag">ByteDance</span><span class="member-tag">China Mobile</span><span class="member-tag">China Unicom</span>
-              <span class="member-tag">Digital China</span><span class="member-tag">H3C</span><span class="member-tag">Intel</span>
-              <span class="member-tag">OpenAnolis</span><span class="member-tag">UnionTech</span><span class="member-tag">ZTE</span>
-              <span class="member-tag">BAAI</span><span class="member-tag">CAICT</span><span class="member-tag">CEPREI</span>
-              <span class="member-tag">Peng Cheng Lab</span><span class="member-tag">Alibaba Cloud</span>
-            </div>
+          <div class="member-image-wrapper">
+            <img src="members-all.png" alt="COIA Inaugural Members" onerror="this.src='https://via.placeholder.com/800x600?text=COIA+Members';this.onerror=null;" />
+            <div class="member-image-caption">📋 First 40+ Member Organizations</div>
           </div>
           
           <h2>🎤 Opening Remarks</h2>
