@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COIA - 机构负责人</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#10233f;
+      --muted:#4f647d;
+      --brand:#10bcd6;
+      --brand-dark:#0a7fa0;
+      --line:#d9e3ef;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;background:var(--bg);color:var(--text);}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:0 auto}
+    .header{
+      background:linear-gradient(135deg, #102544 0%, #0c1a31 45%, #153763 100%);
+      color:#fff;padding:32px 0 40px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .header h1{margin:0 0 8px;font-size:1.8rem}
+    .header p{margin:0;opacity:.8}
+    .back-link{
+      display:inline-block;margin-bottom:20px;color:#10bcd6;
+      border:1px solid #10bcd6;border-radius:999px;padding:6px 16px;
+      font-size:.85rem;transition:.2s;
+    }
+    .back-link:hover{background:rgba(16,188,214,.1)}
+    section{padding:40px 0}
+    .section-title{font-size:1.4rem;margin:0 0 24px;border-left:4px solid var(--brand);padding-left:16px}
+    .grid{display:grid;gap:20px;grid-template-columns:repeat(2,minmax(0,1fr))}
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:14px;
+      padding:20px;box-shadow:0 4px 12px rgba(16,35,63,.06);
+    }
+    .card h4{margin:0 0 12px;font-size:1.1rem;color:var(--brand-dark)}
+    .card ul{margin:0;padding-left:20px;color:var(--muted);line-height:1.75}
+    .footer{
+      background:#0a1830;color:#b8c9e5;padding:24px 0;text-align:center;margin-top:20px;
+    }
+    .lang-btn{
+      position:fixed;bottom:20px;right:20px;
+      background:var(--brand);color:#062430;border:none;border-radius:40px;
+      padding:10px 18px;cursor:pointer;font-weight:700;z-index:100;
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
+    }
+    @media (max-width:700px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <a href="index.html" class="back-link" data-i18n="backLink">← 返回首页</a>
+      <h1 data-i18n="pageTitle">机构负责人（节选）</h1>
+      <p data-i18n="pageSub">COIA 各委员会核心成员</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="grid">
+        <article class="card">
+          <h4 data-i18n="l1Title">理事会（理事单位）</h4>
+          <ul id="l1"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l2Title">专家顾问委员会</h4>
+          <ul id="l2"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l3Title">秘书处</h4>
+          <ul id="l3"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l4Title">技术委员会（TOC）</h4>
+          <ul id="l4"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l5Title">外联委员会</h4>
+          <ul id="l5"></ul>
+        </article>
+        <article class="card">
+          <h4 data-i18n="l6Title">安全委员会</h4>
+          <ul id="l6"></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footText">© 2026 COIA. 保留所有权利。</p>
+    </div>
+  </footer>
+
+  <button class="lang-btn" id="langBtn">EN</button>
+
+  <script>
+    const leaderData = {
+      zh: {
+        l1: ["字节跳动、中国移动、中国联通、神州数码、新华三、英特尔中国、龙蜥社区（阿里云）、统信软件、中兴通讯（按名称字母顺序）"],
+        l2: [
+          "主席：陆首群（原国务院信息办常务副主任）",
+          "成员：Ibrahim Haddad（Linux 基金会战略副总裁）",
+          "成员：何建宗（香港科协会长）",
+          "成员：张泽松（香港城市大学副校长）",
+          "成员：蒋涛（CSDN 创始人、总裁）",
+          "成员：林咏华（智源研究院副院长、总工）"
+        ],
+        l3: [
+          "秘书长：孟伟（LF AI & Data 董事会主席）",
+          "副秘书长：谭中意（COPU 副秘书长、开放原子基金会 TOC 主席）",
+          "成员：徐顺利（英特尔）、袁丽雅（中兴）、王珊（中兴）、王君（香港科协）"
+        ],
+        l4: [
+          "主席：王庆（英特尔研发总监、OIF 个人独立董事）",
+          "副主席：王长金（中兴通讯智算研发总监）",
+          "委员：王强、林演、莫晶晶、岳龙广、陈燕军、王耀华、沈海豪、余跃、王璞"
+        ],
+        l5: [
+          "主席：杨轩（Linux 基金会亚太区副总裁）",
+          "副主席：孟迎霞（CSDN 副总裁、总编）",
+          "副主席：金美琴（阿里云产品运营专家）",
+          "成员：唐松龙（开源高校）、薛冰（蜚语科技）"
+        ],
+        l6: [
+          "主席：杨丽蕴（电子四院软件中心云计算研究室主任）",
+          "副主席：陶冶（国浩律师（南京）事务所合伙人）"
+        ]
+      },
+      en: {
+        l1: ["Board member organizations: ByteDance, China Mobile, China Unicom, Digital China, H3C, Intel China, OpenAnolis (Alibaba Cloud), UnionTech, ZTE (alphabetical order)."],
+        l2: [
+          "Chair: Lu Shouqun (Former Executive Deputy Director, State Council Information Office)",
+          "Member: Ibrahim Haddad (SVP, Linux Foundation)",
+          "Member: Ho Kin-chung (President, Hong Kong IT Joint Council)",
+          "Member: Zhang Zesong (Vice President, City University of Hong Kong)",
+          "Member: Jiang Tao (Founder & President, CSDN)",
+          "Member: Lin Yonghua (Vice President & Chief Engineer, BAAI)"
+        ],
+        l3: [
+          "Secretary-General: Meng Wei (Chair, LF AI & Data Board)",
+          "Deputy Secretary-General: Tan Zhongyi (Deputy Secretary-General, COPU; TOC Chair, OpenAtom Foundation)",
+          "Members: Xu Shunli, Yuan Liya, Wang Shan, Wang Jun"
+        ],
+        l4: [
+          "Chair: Wang Qing (R&D Director, Intel; Independent Director, OIF)",
+          "Vice Chair: Wang Changjin (Director of Intelligent Computing R&D, ZTE)",
+          "Committee Members: Wang Qiang, Lin Yan, Mo Jingjing, Yue Longguang, Chen Yanjun, Wang Yaohua, Shen Haihao, Yu Yue, Wang Pu"
+        ],
+        l5: [
+          "Chair: Yang Xuan (VP, APAC, Linux Foundation)",
+          "Vice Chairs: Meng Yingxia (VP, CSDN), Jin Meiqin (Alibaba Cloud)",
+          "Members: Tang Songlong, Xue Bing"
+        ],
+        l6: [
+          "Chair: Yang Liyun (Director, Software Center Cloud Lab, CEPREI)",
+          "Vice Chair: Tao Ye (Partner, Grandall Law Firm Nanjing)"
+        ]
+      }
+    };
+
+    const i18nText = {
+      zh: {
+        backLink: "← 返回首页",
+        pageTitle: "机构负责人（节选）",
+        pageSub: "COIA 各委员会核心成员",
+        l1Title: "理事会（理事单位）",
+        l2Title: "专家顾问委员会",
+        l3Title: "秘书处",
+        l4Title: "技术委员会（TOC）",
+        l5Title: "外联委员会",
+        l6Title: "安全委员会",
+        footText: "© 2026 COIA. 保留所有权利。"
+      },
+      en: {
+        backLink: "← Back to Home",
+        pageTitle: "Leadership (Selected)",
+        pageSub: "Core members of COIA committees",
+        l1Title: "Board (Member Organizations)",
+        l2Title: "Expert Advisory Committee",
+        l3Title: "Secretariat",
+        l4Title: "Technical Committee (TOC)",
+        l5Title: "External Relations Committee",
+        l6Title: "Security Committee",
+        footText: "© 2026 COIA. All rights reserved."
+      }
+    };
+
+    let lang = "zh";
+
+    function getUrlParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function renderLeaders() {
+      ["l1","l2","l3","l4","l5","l6"].forEach(id => {
+        const ul = document.getElementById(id);
+        if (ul) {
+          ul.innerHTML = "";
+          leaderData[lang][id].forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            ul.appendChild(li);
+          });
+        }
+      });
+    }
+
+    function renderText() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (i18nText[lang][key]) {
+          el.textContent = i18nText[lang][key];
+        }
+      });
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = lang === "zh" ? "COIA - 机构负责人" : "COIA - Leadership";
+      document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
+      renderLeaders();
+    }
+
+    // 从 URL 参数或 localStorage 读取语言设置，保持与主页一致
+    const urlLang = getUrlParam('lang');
+    if (urlLang && (urlLang === 'zh' || urlLang === 'en')) {
+      lang = urlLang;
+    } else {
+      // 尝试从 localStorage 读取
+      const savedLang = localStorage.getItem('coia_lang');
+      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
+        lang = savedLang;
+      }
+    }
+    
+    renderText();
+
+    document.getElementById("langBtn").addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      renderText();
+      // 保存语言偏好
+      localStorage.setItem('coia_lang', lang);
+      // 更新 URL 参数而不刷新页面（可选）
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', newUrl);
+    });
+  </script>
+</body>
+</html>
