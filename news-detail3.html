@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>新闻详情 - COIA</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#10233f;
+      --muted:#4f647d;
+      --brand:#10bcd6;
+      --brand-dark:#0a7fa0;
+      --line:#d9e3ef;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;background:var(--bg);color:var(--text);}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:0 auto}
+    .header{
+      background:linear-gradient(135deg, #102544 0%, #0c1a31 45%, #153763 100%);
+      color:#fff;padding:32px 0 40px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .header-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .header-left{
+      flex:1;
+    }
+    .header-left h1{margin:0;font-size:1.8rem}
+    .back-link{
+      display:inline-block;margin-bottom:12px;color:#10bcd6;
+      border:1px solid #10bcd6;border-radius:999px;padding:6px 16px;
+      font-size:.85rem;transition:.2s;
+    }
+    .back-link:hover{background:rgba(16,188,214,.1)}
+    .lang-btn-header{
+      background:rgba(255,255,255,.2);
+      border:1px solid rgba(255,255,255,.4);
+      border-radius:999px;
+      padding:8px 18px;
+      cursor:pointer;
+      font-weight:600;
+      color:#fff;
+      font-size:.9rem;
+      transition:all 0.2s ease;
+    }
+    .lang-btn-header:hover{
+      background:rgba(255,255,255,.3);
+      border-color:var(--brand);
+    }
+    .article{
+      background:var(--card);border-radius:20px;padding:40px;
+      margin:40px 0;box-shadow:0 4px 20px rgba(0,0,0,.04);
+    }
+    .article h1{
+      font-size:1.8rem;margin:0 0 16px;color:var(--text);
+    }
+    .article-date{
+      color:var(--brand-dark);font-size:.9rem;margin-bottom:24px;display:block;
+      padding-bottom:16px;border-bottom:1px solid var(--line);
+    }
+    .article-content{
+      color:var(--text);line-height:1.8;
+    }
+    .article-content h2{
+      font-size:1.4rem;margin:32px 0 16px;color:var(--text);
+    }
+    .article-content h3{
+      font-size:1.2rem;margin:24px 0 12px;color:var(--text);
+    }
+    .article-content p{
+      margin:0 0 16px;color:var(--muted);
+    }
+    .article-content .speech{
+      background:#f0f7fc;padding:20px 24px;border-radius:12px;
+      margin:24px 0;border-left:4px solid var(--brand);
+    }
+    .image-wrapper{
+      margin:24px 0;
+      text-align:center;
+      background:#f8fafc;
+      border-radius:16px;
+      padding:20px;
+      border:1px solid var(--line);
+    }
+    .image-wrapper img{
+      max-width:100%;
+      height:auto;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+    }
+    .image-caption{
+      margin-top:12px;
+      font-size:.85rem;
+      color:var(--muted);
+      text-align:center;
+    }
+    .forum-info{
+      background:#eefbff;
+      padding:16px 20px;
+      border-radius:12px;
+      margin:20px 0;
+      display:inline-block;
+      width:100%;
+    }
+    .forum-info p{
+      margin:4px 0;
+    }
+    .table-wrap{
+      overflow-x:auto;
+      margin:24px 0;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 1px 3px rgba(0,0,0,.05);
+    }
+    th,td{
+      border:1px solid var(--line);
+      padding:12px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{
+      background:#f1f7ff;
+      font-weight:600;
+    }
+    .footer{
+      background:#0a1830;color:#b8c9e5;padding:24px 0;text-align:center;margin-top:20px;
+    }
+    @media (max-width:700px){
+      .article{padding:24px;}
+      .article h1{font-size:1.4rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="header-left">
+          <a href="news.html" class="back-link" data-i18n="backLink">← 返回新闻列表</a>
+          <h1 data-i18n="pageTitle">新闻详情</h1>
+        </div>
+        <button class="lang-btn-header" id="langBtn">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="article" id="articleContent">
+      <!-- 动态加载内容 -->
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footText">© 2026 COIA. 保留所有权利。</p>
+    </div>
+  </footer>
+
+  <script>
+    const detailData = {
+      zh: {
+        title: "开放智算产业联盟（COIA）联合 Linux 基金会亚太区承办的“AI+ Power 2026 - Open Source Agentic AI 技術應用落地”分论坛顺利举行",
+        date: "2026年6月4日",
+        content: `
+          <div class="forum-info">
+            <p>📅 <strong>时间</strong>：2026年6月4日</p>
+            <p>📍 <strong>地点</strong>：香港会议展览中心</p>
+          </div>
+          <p>由 <strong>开放智算产业联盟（COIA）</strong> 联合 <strong>Linux 基金会亚太区</strong> 承办的<br />
+          <strong>“AI+ Power 2026 - Open Source Agentic AI 技術應用落地”分论坛</strong><br />
+          于6月4日在香港举行。</p>
+          <p>论坛以 <strong>“开源 AI 智能体应用落地”</strong> 为核心议题，汇聚开源生态、人工智能、通信科技及企业数字化领域的专家代表，围绕 Agentic AI 在企业场景中的真实应用、部署路径、生态建设与治理策略展开深入交流。</p>
+          <p>随着生成式人工智能持续向具备 <strong>自主规划、任务执行、工具调用和协同决策能力</strong> 的 <strong>Agentic AI</strong> 演进，企业对智能体技术的关注正从概念探索走向生产力落地。</p>
+          <p>本次论坛聚焦企业普遍关心的关键问题：<br />
+          🔹 Agentic AI 如何真正融入日常运营？<br />
+          🔹 如何降低技术门槛？<br />
+          🔹 如何通过开源生态帮助企业实现更高效、更灵活的智能化升级？</p>
+          <p>论坛提出：<strong>Agentic AI 不仅是新一代人工智能技术方向，更将成为推动企业组织效率提升、业务流程重构和产业智能化转型的重要力量。</strong></p>
+
+          <!-- 第一张图片：论坛现场或香港会议展览中心 -->
+          <div class="image-wrapper">
+            <img src="forum_pic1.jpg" alt="AI+ Power 2026 论坛现场" onerror="this.src='https://via.placeholder.com/800x500?text=Forum+Scene';this.onerror=null;" />
+            <div class="image-caption">📸 AI+ Power 2026 论坛现场</div>
+          </div>
+
+          <h2>🚀 聚焦开源智能体，解锁企业生产力新范式</h2>
+          <p>本次 <strong>Opensource AI Agentic Forum 开源 AI 智能体论坛</strong> 以“技术应用落地”为主线，邀请中国顶尖开源 AI 技术专家与行业领袖，从底层生态架构到真实产业实践，对企业应用 Agentic AI 的路径进行系统拆解。</p>
+
+          <h3>🎤 主题演讲一</h3>
+          <p><strong>中国开源软件推进联盟（COPU）常务副秘书长、Apache 软件基金会（ASF）正式成员 谭中意先生</strong><br />
+          发表题为 <strong>《Agentic AI 与企业智能化的新里程碑》</strong> 的演讲。</p>
+          <p>谭中意指出：智能体技术正推动企业智能化进入新的发展阶段。相较于传统自动化工具，Agentic AI 更强调任务理解、流程规划、动态执行和持续反馈能力，能够在复杂业务场景中承担更高阶的辅助决策和执行任务。开源模式则为企业提供了更加透明、可控、可协作的技术创新路径。</p>
+
+          <h3>🎤 主题演讲二</h3>
+          <p><strong>中兴通讯开源负责人、开放代理式人工智能基金会（OAAIF）秘书长、LF AI & Data 基金会两届董事会主席 孟伟先生</strong><br />
+          围绕 <strong>《从开源 Agentic AI 生态到产业落地的关键路径》</strong> 发表演讲。</p>
+          <p>孟伟表示：Agentic AI 的产业化落地不仅依赖单点模型能力，更需要开放协同的技术生态、稳定可靠的基础设施、面向企业级场景的工程化能力，以及覆盖安全、合规、治理的完整体系。开源社区和产业组织应共同推动智能体框架、接口标准、工具链和应用范式建设。</p>
+
+          <h3>🎤 主题演讲三</h3>
+          <p><strong>腾讯开源联盟主席 单致豪先生</strong><br />
+          以 <strong>《一人亦可成军，智能体如何放大创意与生产力》</strong> 为题，探讨 Agentic AI 对个人与组织生产方式的重塑。</p>
+          <p>单致豪表示：智能体技术正在把复杂任务拆解、跨工具协作、内容生成、代码开发、知识管理等能力带入企业日常工作流，使个人能够借助 AI 完成过去需要团队协同才能完成的任务。未来，Agentic AI 将显著放大创意生产、软件研发、运营管理和知识工作效率。</p>
+
+          <h2>🧠 圆桌对话：企业如何真正把 Agentic AI 用起来？</h2>
+          <p>在专题座谈环节，论坛围绕 <strong>《企业如何真正把 Agentic AI 用起来——趋势、策略与治理》</strong> 展开多方圆桌讨论。</p>
+          <ul>
+            <li><strong>圆桌主持：</strong>Linux 基金会亚太区副总裁 杨轩先生</li>
+            <li><strong>圆桌嘉宾：</strong>谭中意先生、孟伟先生、单致豪先生 等</li>
+          </ul>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>议题</th><th>内容</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>💼 成熟场景</td><td>2026年企业部署 Agentic AI 最成熟的场景有哪些？</td></tr>
+                <tr><td>🧩 技术路径</td><td>企业应选择自研、共建还是采购智能体解决方案？</td></tr>
+                <tr><td>🔄 开源与闭源</td><td>开源与闭源方案如何组合使用？</td></tr>
+                <tr><td>⚠️ 风险与治理</td><td>企业最担心的是成本、风险、治理还是人才？</td></tr>
+                <tr><td>🛡️ 治理体系</td><td>如何建立可持续的智能体应用治理体系？</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>💡 圆桌核心观点</h3>
+          <ul>
+            <li><strong>应用场景</strong>：首先出现在流程清晰、数据基础好、任务边界明确且具备高频协作需求的场景，如软件开发、客户服务、企业知识管理、运营自动化、IT 运维、营销内容生成、内部流程协同等。</li>
+            <li><strong>战略定位</strong>：部署 Agentic AI 不应仅视为采购工具，而应作为<strong>业务流程、数据体系、技术架构和组织能力的综合升级</strong>。</li>
+            <li><strong>路径选择</strong>：自研、共建与采购并非彼此排斥。大型企业可围绕核心场景开展自主研发或生态共建；中小企业可优先采用成熟开源框架和商业化服务，降低试错成本。</li>
+            <li><strong>开源+闭源组合</strong>：开源方案提供透明、灵活的基础能力，闭源方案在特定模型能力、产品化服务和商业支持方面形成补充。</li>
+            <li><strong>风险治理</strong>：Agentic AI 具备自主执行能力，必须在<strong>权限管理、数据安全、任务边界、结果可追溯、人工监督和责任机制</strong>等方面建立规范。坚持 <strong>"小场景切入、可控试点、逐步扩展"</strong> 原则。</li>
+          </ul>
+
+          <!-- 第二张图片：圆桌讨论或嘉宾合影 -->
+          <div class="image-wrapper">
+            <img src="forum_pic2.jpg" alt="圆桌对话现场" onerror="this.src='https://via.placeholder.com/800x500?text=Roundtable+Discussion';this.onerror=null;" />
+            <div class="image-caption">🎙️ 圆桌对话：趋势、策略与治理</div>
+          </div>
+
+          <h2>🤝 开源协同推动 Agentic AI 产业落地</h2>
+          <p>本次论坛特别强调<strong>开源生态在 Agentic AI 发展中的基础性作用</strong>。与会专家认为：Agentic AI 的落地需要模型、工具、数据、算力、工作流、应用框架和行业知识的深度协同，而开源社区能够有效促进技术共享、标准共建和生态繁荣。</p>
+          <p>开放智算产业联盟、开放代理式人工智能基金会与 Linux 基金会亚太区联合承办本次论坛，体现了各方在推动开放技术生态、智能算力协同和企业级 AI 应用方面的共同愿景。论坛为 <strong>香港及亚太地区</strong> 企业了解、试用和部署 Agentic AI 提供了重要交流平台。</p>
+
+          <h2>🌟 共建开放、可信、可落地的智能体生态</h2>
+          <p>论坛认为，<strong>Agentic AI 正在成为人工智能从“辅助工具”走向“智能协作者”的关键阶段</strong>。未来，随着开源框架持续成熟、企业应用案例不断丰富、治理体系逐步完善，智能体将在更多行业释放生产力潜能。</p>
+          <p>与会嘉宾表示：开源 Agentic AI 的发展不仅关乎技术创新，更关乎产业协作方式的升级。各方应继续推动开放标准、开源项目、开发者社区和产业应用之间的联动，帮助企业以更低门槛、更高效率、更可控的方式拥抱智能体时代。</p>
+          <p>本次论坛的成功举办，为企业、开发者、开源组织和产业伙伴搭建了高质量交流平台，也进一步推动了 <strong>Agentic AI 从技术概念走向真实生产场景</strong>。</p>
+
+          <div class="speech">
+            <strong>📌 未来展望</strong>
+            <p style="margin-top:8px;">开放智算产业联盟、开放代理式人工智能基金会及 Linux 基金会亚太区将继续携手生态伙伴，共同促进开源人工智能技术创新与产业落地，助力企业智能化迈向新里程碑。</p>
+          </div>
+        `
+      },
+      en: {
+        title: "COIA & Linux Foundation APAC Successfully Host “AI+ Power 2026 - Open Source Agentic AI Application Implementation” Sub-Forum",
+        date: "June 4, 2026",
+        content: `
+          <div class="forum-info">
+            <p>📅 <strong>Date</strong>: June 4, 2026</p>
+            <p>📍 <strong>Location</strong>: Hong Kong Convention and Exhibition Centre</p>
+          </div>
+          <p>The sub-forum <strong>“AI+ Power 2026 - Open Source Agentic AI Application Implementation”</strong>, co-organized by <strong>COIA</strong> and <strong>Linux Foundation APAC</strong>, was held on June 4 in Hong Kong.</p>
+          <p>The forum focused on <strong>open-source AI agent implementation</strong>, bringing together experts from open-source ecosystems, AI, telecommunications, and enterprise digital transformation to discuss real-world applications, deployment paths, ecosystem building, and governance strategies for Agentic AI.</p>
+          <p>As generative AI evolves toward <strong>Agentic AI</strong> with autonomous planning, task execution, tool calling, and collaborative decision-making, enterprises are shifting from exploration to productivity-driven implementation.</p>
+          <p>Key questions addressed:<br />
+          🔹 How can Agentic AI be integrated into daily operations?<br />
+          🔹 How to lower technical barriers?<br />
+          🔹 How can open-source ecosystems enable efficient and flexible intelligence upgrades?</p>
+          <p>The forum emphasized that <strong>Agentic AI is not just a new direction for AI technology, but a powerful force for improving organizational efficiency, reengineering business processes, and driving industrial intelligence transformation.</strong></p>
+
+          <!-- Image 1: Forum scene or Hong Kong Convention Centre -->
+          <div class="image-wrapper">
+            <img src="forum_pic1.jpg" alt="AI+ Power 2026 Forum Scene" onerror="this.src='https://via.placeholder.com/800x500?text=Forum+Scene';this.onerror=null;" />
+            <div class="image-caption">📸 AI+ Power 2026 Forum Scene</div>
+          </div>
+
+          <h2>🚀 Focus on Open Source Agents: Unlocking New Productivity Paradigms</h2>
+          <p>The <strong>Open Source AI Agentic Forum</strong> centered on technology implementation, featuring top Chinese open-source AI experts and industry leaders who systematically deconstructed the path for enterprises to adopt Agentic AI—from underlying ecosystem architecture to real-world industrial practices.</p>
+
+          <h3>🎤 Keynote 1</h3>
+          <p><strong>Mr. Tan Zhongyi</strong>, Executive Deputy Secretary-General of COPU and ASF Member, presented <strong>“Agentic AI and a New Milestone in Enterprise Intelligence.”</strong></p>
+          <p>He noted that agent technology is driving enterprise intelligence into a new phase. Unlike traditional automation tools, Agentic AI emphasizes task understanding, process planning, dynamic execution, and continuous feedback, enabling higher-order decision support in complex business scenarios. Open-source models provide a transparent, controllable, and collaborative path for innovation.</p>
+
+          <h3>🎤 Keynote 2</h3>
+          <p><strong>Mr. Meng Wei</strong>, Head of ZTE, Chairman of OAAIF, and former two-term Board Chairman of LF AI & Data, spoke on <strong>“The Critical Path from Open Source Agentic AI Ecosystem to Industrial Implementation.”</strong></p>
+          <p>He stressed that industrial implementation of Agentic AI requires not only model capabilities but also an open collaborative ecosystem, reliable infrastructure, enterprise-grade engineering, and a complete framework for security, compliance, and governance. Open-source communities and industry organizations should jointly advance agent frameworks, interface standards, toolchains, and application paradigms.</p>
+
+          <h3>🎤 Keynote 3</h3>
+          <p><strong>Mr. Shan Zhihao</strong>, Chairman of Tencent Open Source Alliance, presented <strong>“One Person Can Be an Army: How Agents Amplify Creativity and Productivity.”</strong></p>
+          <p>He explained how agent technology brings complex task decomposition, cross-tool collaboration, content generation, code development, and knowledge management into daily workflows, enabling individuals to accomplish tasks that previously required teams. In the future, Agentic AI will significantly amplify creative production, software development, operations, and knowledge work efficiency.</p>
+
+          <h2>🧠 Roundtable: How Can Enterprises Actually Use Agentic AI?</h2>
+          <p>A panel discussion titled <strong>“How Can Enterprises Actually Use Agentic AI – Trends, Strategies, and Governance”</strong> was held.</p>
+          <ul>
+            <li><strong>Moderator:</strong> Mr. Yang Xuan, VP of Linux Foundation APAC</li>
+            <li><strong>Panelists:</strong> Mr. Tan Zhongyi, Mr. Meng Wei, Mr. Shan Zhihao, and others</li>
+          </ul>
+
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Topic</th><th>Content</th></tr></thead>
+              <tbody>
+                <tr><td>💼 Mature Scenarios</td><td>What are the most mature scenarios for enterprise Agentic AI deployment in 2026?</td></tr>
+                <tr><td>🧩 Technical Path</td><td>Should enterprises build, co-develop, or buy agent solutions?</td></tr>
+                <tr><td>🔄 Open vs. Closed Source</td><td>How to combine open and closed source solutions?</td></tr>
+                <tr><td>⚠️ Risks & Governance</td><td>What concerns enterprises most: cost, risk, governance, or talent?</td></tr>
+                <tr><td>🛡️ Governance System</td><td>How to build a sustainable governance system for agent applications?</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>💡 Key Takeaways from the Roundtable</h3>
+          <ul>
+            <li><strong>Application scenarios:</strong> Initially in well-defined, data-rich, bounded, and collaborative processes such as software development, customer service, knowledge management, operations automation, IT Ops, marketing content generation, and internal workflow coordination.</li>
+            <li><strong>Strategic positioning:</strong> Deploying Agentic AI is not just tool procurement but a comprehensive upgrade of business processes, data systems, technical architecture, and organizational capabilities.</li>
+            <li><strong>Path selection:</strong> Build, co-develop, and buy are not mutually exclusive. Large enterprises can focus on core scenarios with in-house or co-development; SMEs can start with mature open-source frameworks and commercial services to reduce trial costs.</li>
+            <li><strong>Open + closed source combination:</strong> Open source provides transparent and flexible foundations; closed source complements with specialized models, productized services, and commercial support.</li>
+            <li><strong>Risk governance:</strong> Agentic AI's autonomous execution requires norms around permission management, data security, task boundaries, traceability, human oversight, and accountability. Adopt a principle of <strong>"start small, control pilot, expand gradually."</strong></li>
+          </ul>
+
+          <!-- Image 2: Roundtable discussion or group photo -->
+          <div class="image-wrapper">
+            <img src="forum_pic2.jpg" alt="Roundtable Discussion" onerror="this.src='https://via.placeholder.com/800x500?text=Roundtable+Discussion';this.onerror=null;" />
+            <div class="image-caption">🎙️ Roundtable: Trends, Strategies & Governance</div>
+          </div>
+
+          <h2>🤝 Open Source Collaboration Drives Agentic AI Industrial Implementation</h2>
+          <p>The forum highlighted the foundational role of open-source ecosystems in Agentic AI development. Deep collaboration across models, tools, data, compute, workflows, application frameworks, and domain knowledge is essential, and open-source communities effectively promote technology sharing, standard co-construction, and ecosystem prosperity.</p>
+          <p>The co-organization by COIA, OAAIF, and Linux Foundation APAC demonstrates a shared vision for open technology ecosystems, intelligent computing collaboration, and enterprise AI adoption. The forum provided a key platform for enterprises in Hong Kong and the Asia-Pacific region to learn about, pilot, and deploy Agentic AI.</p>
+
+          <h2>🌟 Building an Open, Trustworthy, and Implementable Agent Ecosystem</h2>
+          <p>The forum concluded that <strong>Agentic AI marks a critical stage where AI transitions from a “tool” to an “intelligent collaborator.”</strong> As open-source frameworks mature, enterprise cases multiply, and governance systems improve, agents will unleash productivity across more industries.</p>
+          <p>Panelists agreed that the development of open-source Agentic AI is not only about technological innovation but also about upgrading industrial collaboration. All parties should continue to promote linkages between open standards, open-source projects, developer communities, and industrial applications, helping enterprises embrace the agent era with lower barriers, higher efficiency, and better control.</p>
+          <p>The successful forum built a high-quality exchange platform for enterprises, developers, open-source organizations, and industry partners, further advancing <strong>Agentic AI from concept to real production scenarios.</strong></p>
+
+          <div class="speech">
+            <strong>📌 Future Outlook</strong>
+            <p style="margin-top:8px;">COIA, OAAIF, and Linux Foundation APAC will continue to work with ecosystem partners to promote open-source AI innovation and industrial implementation, helping enterprises reach new milestones in intelligence.</p>
+          </div>
+        `
+      }
+    };
+
+    let lang = "zh";
+
+    function getUrlParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function renderDetail() {
+      const container = document.getElementById("articleContent");
+      if (!container) return;
+      
+      const data = detailData[lang];
+      container.innerHTML = `
+        <h1>${data.title}</h1>
+        <div class="article-date">📅 ${data.date}</div>
+        <div class="article-content">${data.content}</div>
+      `;
+    }
+
+    function renderText() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const texts = {
+          zh: {
+            backLink: "← 返回新闻列表",
+            pageTitle: "新闻详情",
+            footText: "© 2026 COIA. 保留所有权利。"
+          },
+          en: {
+            backLink: "← Back to News",
+            pageTitle: "News Detail",
+            footText: "© 2026 COIA. All rights reserved."
+          }
+        };
+        if (texts[lang][key]) {
+          el.textContent = texts[lang][key];
+        }
+      });
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = lang === "zh" ? "新闻详情 - COIA" : "News Detail - COIA";
+      document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
+      renderDetail();
+    }
+
+    const urlLang = getUrlParam('lang');
+    if (urlLang && (urlLang === 'zh' || urlLang === 'en')) {
+      lang = urlLang;
+    } else {
+      const savedLang = localStorage.getItem('coia_lang');
+      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
+        lang = savedLang;
+      }
+    }
+    
+    renderText();
+
+    document.getElementById("langBtn").addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      renderText();
+      localStorage.setItem('coia_lang', lang);
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', newUrl);
+    });
+  </script>
+</body>
+</html>
