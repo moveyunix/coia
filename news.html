@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="coia_favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="coia_favicon.ico" />
   <title>新闻与活动 - COIA</title>
   <style>
     :root{
@@ -111,7 +113,8 @@
   </footer>
 
   <script>
-    const newsData = {
+    // 原始数据（顺序任意，渲染时会自动按日期排序）
+    const rawNewsData = {
       zh: [
         {
           id: "ai-power-2026-forum",
@@ -119,6 +122,13 @@
           date: "2026年6月4日",
           summary: "2026年6月4日，由开放智算产业联盟（COIA）联合 Linux 基金会亚太区承办的“AI+ Power 2026 - Open Source Agentic AI 技術應用落地”分论坛在香港会议展览中心举行。论坛聚焦开源AI智能体应用落地，汇聚顶尖专家探讨企业智能化升级路径。",
           detailUrl: "news-detail3.html?id=ai-power-2026-forum"
+        },
+        {
+          id: "oaiaf-foundation",
+          title: "开放代理式人工智能基金会成立大会顺利召开",
+          date: "2026年3月26日",
+          summary: "3月26日，由开放智算产业联盟联合天工开物开源基金会、中国开源软件推进联盟（COPU）指导的开放代理式人工智能基金会（OAAIF）成立大会暨“灵虾计划-智能体创客”论坛在上海漕河泾科技绿洲成功举办。作为国内首个聚焦智能体领域的基金会，标志着中国AI智能体生态迈入开放协作、共建共享的新阶段。",
+          detailUrl: "news-detail4.html?id=oaiaf-foundation"
         },
         {
           id: "opea-un-competition",
@@ -144,6 +154,13 @@
           detailUrl: "news-detail3.html?id=ai-power-2026-forum"
         },
         {
+          id: "oaiaf-foundation",
+          title: "Inaugural Conference of the Open Agentic AI Foundation Successfully Held",
+          date: "March 26, 2026",
+          summary: "On March 26, the inaugural conference of the Open Agentic AI Foundation (OAAIF), guided by COIA, Tiangong Kaiwu Open Source Foundation, and COPU, was successfully held in Shanghai. As China's first foundation focused on AI agents, it marks a new stage of open collaboration and shared development for China's AI agent ecosystem.",
+          detailUrl: "news-detail4.html?id=oaiaf-foundation"
+        },
+        {
           id: "opea-un-competition",
           title: "COIA Launches OPEA Competition at UN AI for Good Global Summit",
           date: "July 9, 2025",
@@ -160,6 +177,26 @@
       ]
     };
 
+    // 日期解析函数（支持中文和英文格式）
+    function parseDate(dateStr, lang) {
+      if (lang === 'zh') {
+        // 中文格式：2026年6月4日
+        const match = dateStr.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+        if (match) {
+          const year = parseInt(match[1], 10);
+          const month = parseInt(match[2], 10) - 1; // 月份从0开始
+          const day = parseInt(match[3], 10);
+          return new Date(year, month, day);
+        }
+      } else {
+        // 英文格式：June 4, 2026 或 July 9, 2025 或 December 18, 2024
+        const parsed = new Date(Date.parse(dateStr));
+        if (!isNaN(parsed)) return parsed;
+      }
+      // 降级：返回最小值，避免排序错误
+      return new Date(0);
+    }
+
     let lang = "zh";
 
     function getUrlParam(param) {
@@ -171,7 +208,15 @@
       const container = document.getElementById("newsList");
       if (!container) return;
       
-      const news = newsData[lang];
+      // 获取当前语言的数据，并复制一份用于排序
+      let news = [...rawNewsData[lang]];
+      // 按日期降序排序（新的在前）
+      news.sort((a, b) => {
+        const dateA = parseDate(a.date, lang);
+        const dateB = parseDate(b.date, lang);
+        return dateB - dateA;
+      });
+      
       container.innerHTML = "";
       
       news.forEach(item => {
@@ -215,7 +260,7 @@
       document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
       document.title = lang === "zh" ? "新闻与活动 - COIA" : "News & Events - COIA";
       document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
-      renderNewsList();
+      renderNewsList(); // 重新渲染时会自动排序
     }
 
     const urlLang = getUrlParam('lang');
