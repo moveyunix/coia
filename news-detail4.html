@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>新闻详情 - COIA</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#10233f;
+      --muted:#4f647d;
+      --brand:#10bcd6;
+      --brand-dark:#0a7fa0;
+      --line:#d9e3ef;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;background:var(--bg);color:var(--text);}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:0 auto}
+    .header{
+      background:linear-gradient(135deg, #102544 0%, #0c1a31 45%, #153763 100%);
+      color:#fff;padding:32px 0 40px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .header-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .header-left{
+      flex:1;
+    }
+    .header-left h1{margin:0;font-size:1.8rem}
+    .back-link{
+      display:inline-block;margin-bottom:12px;color:#10bcd6;
+      border:1px solid #10bcd6;border-radius:999px;padding:6px 16px;
+      font-size:.85rem;transition:.2s;
+    }
+    .back-link:hover{background:rgba(16,188,214,.1)}
+    .lang-btn-header{
+      background:rgba(255,255,255,.2);
+      border:1px solid rgba(255,255,255,.4);
+      border-radius:999px;
+      padding:8px 18px;
+      cursor:pointer;
+      font-weight:600;
+      color:#fff;
+      font-size:.9rem;
+      transition:all 0.2s ease;
+    }
+    .lang-btn-header:hover{
+      background:rgba(255,255,255,.3);
+      border-color:var(--brand);
+    }
+    .article{
+      background:var(--card);border-radius:20px;padding:40px;
+      margin:40px 0;box-shadow:0 4px 20px rgba(0,0,0,.04);
+    }
+    .article h1{
+      font-size:1.8rem;margin:0 0 16px;color:var(--text);
+    }
+    .article-date{
+      color:var(--brand-dark);font-size:.9rem;margin-bottom:24px;display:block;
+      padding-bottom:16px;border-bottom:1px solid var(--line);
+    }
+    .article-content{
+      color:var(--text);line-height:1.8;
+    }
+    .article-content h2{
+      font-size:1.4rem;margin:32px 0 16px;color:var(--text);
+    }
+    .article-content h3{
+      font-size:1.2rem;margin:24px 0 12px;color:var(--text);
+    }
+    .article-content p{
+      margin:0 0 16px;color:var(--muted);
+    }
+    .article-content .speech{
+      background:#f0f7fc;padding:20px 24px;border-radius:12px;
+      margin:24px 0;border-left:4px solid var(--brand);
+    }
+    .event-info{
+      background:#eefbff;
+      padding:16px 20px;
+      border-radius:12px;
+      margin:20px 0;
+    }
+    .footer{
+      background:#0a1830;color:#b8c9e5;padding:24px 0;text-align:center;margin-top:20px;
+    }
+    @media (max-width:700px){
+      .article{padding:24px;}
+      .article h1{font-size:1.4rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="header-left">
+          <a href="news.html" class="back-link" data-i18n="backLink">← 返回新闻列表</a>
+          <h1 data-i18n="pageTitle">新闻详情</h1>
+        </div>
+        <button class="lang-btn-header" id="langBtn">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="article" id="articleContent">
+      <!-- 动态加载内容 -->
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footText">© 2026 COIA. 保留所有权利。</p>
+    </div>
+  </footer>
+
+  <script>
+    const detailData = {
+      zh: {
+        title: "开放代理式人工智能基金会成立大会顺利召开",
+        date: "2026年3月26日",
+        content: `
+          <div class="event-info">
+            <p>📅 <strong>时间</strong>：2026年3月26日</p>
+            <p>📍 <strong>地点</strong>：上海·漕河泾科技绿洲</p>
+          </div>
+          <p>3月26日，由开放智算产业联盟联合天工开物开源基金会、中国开源软件推进联盟（COPU）指导的<strong>开放代理式人工智能基金会（OAAIF）成立大会暨“灵虾计划-智能体创客”论坛</strong>在上海漕河泾科技绿洲成功举办。<strong>作为国内首个聚焦智能体领域的基金会的正式成立，标志着中国AI智能体生态迈入开放协作、共建共享的新阶段</strong>。</p>
+          <p>开放智算产业联盟作为核心指导单位，携手产业、学术与开源社区200余位代表，<strong>共同探索以开源协作推动AI智能体技术稳健发展、深度融入千行百业的实践路径，为全球数字化发展贡献中国开源力量</strong>。中国开源软件推进联盟（COPU）名誉主席、中国开源奠基人、基金会顾问委员会主席陆首群向大会致辞，天工开物理事长兼秘书长田广礼代表理事会和秘书处向大会致贺词，阿里巴巴、腾讯、百度、信通院、中国电信、中国数联、中兴通讯、Intel英特尔、开源社、AIPY、ANP、奥锐方、KPro企业知识开源社区、上海开源信息技术协会等单位的专家和代表出席会议。</p>
+
+          <h2>一 新里程碑：构筑开源基石</h2>
+          <p>当前，AI正经历从内容生成与对话的工具形态，向能够自主理解、规划并执行复杂任务的智能体（AI Agent）形态的深层演进，从数字空间逐步渗透至实体经济的各类现实场景，为产业数字化升级与智能经济发展描绘了全新图景。开源与AI的协同演进，正深刻重塑技术创新模式、产业组织形态和社会生产方式，开源社区、工具链、模型及数据基础设施，已成为智能经济建设、工业软件发展、产业协同创新和人才培养的重要底座。</p>
+          <p>在此背景下，开放智算产业联盟立足中国人工智能产业发展的丰富实践，顺应全球开源与AI融合发展的重要方向，联合多方力量指导设立OAAIF，<strong>正是为了以开源的开放协作模式，破解当前智能体发展中存在的接口碎片化、生态壁垒、安全治理等核心问题，推动AI智能体技术在合规前提下实现规模化、可信化商用</strong>。</p>
+          <p>作为专注于AI开源的中国开源基金会，开放代理式人工智能基金会始终坚守中立、专业、商业化的公益立场，肩负推动中国AI开源产业破局、链接世界AI产业的重要使命。在AI智能体技术加速发展的当下，联盟深刻认识到，超级个体、创新小团队、开发者社区与基金会平台之间正形成全新的协作关系，而AI大规模参与生产实践，也让代码安全、供应链安全、数据安全、模型治理与知识产权合规等问题的重要性显著提升。在此背景下，<strong>以开源模式凝聚产业共识、整合创新资源，成为推动AI智能体技术健康发展的必然选择</strong>，这也是开放智算产业联盟指导设立OAAIF的核心初衷——以联盟的平台优势，链接开发者、AI开源项目、产业、高校与社会公共资源，为AI智能体生态建设搭建中立、开放的协同平台，服务国家人工智能+、开源社区建设、产业数字化转型等战略部署，助力科技创新、产业升级和社会公共利益实现。</p>
+
+          <h2>二 OAAIF开源生态建设的行动方向</h2>
+          <h3>1. 强化开源项目孵化与赋能</h3>
+          <p>发挥基金会平台优势，为AI智能体领域的优质开源项目提供孵化、捐赠与资源支持，聚焦智能体基础设施建设，降低技术开发门槛，推动核心技术的协同创新与标准共建。</p>
+          <h3>2. 助力开发者与创新主体成长</h3>
+          <p>顺应新个体经济发展的政策导向，为轻量化创业、超级个体和小团队创新提供开源技术平台与社区支持，释放个体与小团队的创新创造力，培育AI智能体生态的创新活力。</p>
+          <h3>3. 推动开源与产业需求精准对接</h3>
+          <p>搭建开源社区与产业界的沟通桥梁，推动AI智能体开源技术与工业软件、实体经济场景的深度落地，将开源技术成果转化为实际产业价值，助力产业数字化升级。</p>
+          <h3>4. 建设可信开源与AI治理能力</h3>
+          <p>联合专业机构与行业专家，开展AI智能体安全治理、合规评估等相关研究与实践，推动建立健全开源智能体的治理体系，为技术发展提供合规、稳健的制度保障。</p>
+          <h3>5. 深化国际开源协作与交流</h3>
+          <p>支持OAAIF的全球化布局，推动中国AI智能体开源项目更高质量参与全球社区协作，与全球开源组织、社区共同推进开放、可信、可持续的AI与开源生态建设，在全球开源治理中承担更积极的中国责任。</p>
+          <h3>6. 搭建协同创新与交流平台</h3>
+          <p>持续举办技术论坛、实战交流等活动，打造AI智能体领域的技术交流与思想碰撞平台，促进技术经验共享、产学研协同创新，为AI智能体生态发展凝聚共识、探索路径。</p>
+
+          <h2>三 展望未来：携手共赴智能时代</h2>
+          <p>开放智算产业联盟将以OAAIF成立为契机，持续发挥开源公共基础设施组织者、开源项目治理和孵化平台、链接全球开源协作网络的公共组织作用，以中立、专业的公益立场，凝聚各方创新力量，推动AI智能体开源生态的建设与繁荣。未来，基金会将继续立足中国实践、面向全球协作，以开源之力推动AI智能体技术安全、可信、可持续发展，<strong>让开源成为AI智能体技术服务产业、造福社会的重要桥梁，为智能经济发展和全球数字化转型贡献开源智慧与方案</strong>。</p>
+        `
+      },
+      en: {
+        title: "Inaugural Conference of the Open Agentic AI Foundation Successfully Held",
+        date: "March 26, 2026",
+        content: `
+          <div class="event-info">
+            <p>📅 <strong>Date</strong>: March 26, 2026</p>
+            <p>📍 <strong>Location</strong>: Shanghai Caohejing Technology Green</p>
+          </div>
+          <p>On March 26, the inaugural conference of the <strong>Open Agentic AI Foundation (OAAIF)</strong> and the "Lingxia Plan - Agent Maker" Forum, guided by COIA, Tiangong Kaiwu Open Source Foundation, and China OSS Promotion Union (COPU), was successfully held in Shanghai. <strong>As China's first foundation dedicated to AI agents, this marks a new stage of open collaboration and shared development for China's AI agent ecosystem.</strong></p>
+          <p>COIA, as the core guiding organization, joined over 200 representatives from industry, academia, and open-source communities to <strong>explore practical paths for enabling robust development of AI agent technology through open-source collaboration and deep integration into various industries, contributing Chinese open-source strength to global digital development.</strong> Lu Shouqun, Honorary Chairman of COPU and godfather of Chinese open source, delivered a speech. Tian Guangli, Chairman and Secretary-General of Tiangong Kaiwu, gave a congratulatory address. Experts and representatives from Alibaba, Tencent, Baidu, CAICT, China Telecom, China Data Union, ZTE, Intel, Kaiyuanshe, AIPY, ANP, Aoruifang, KPro Enterprise Knowledge Open Source Community, Shanghai Open Source Information Technology Association, and other organizations attended.</p>
+
+          <h2>I A New Milestone: Building an Open Source Foundation</h2>
+          <p>AI is evolving from a tool for content generation and dialogue toward an agent form capable of autonomous understanding, planning, and execution of complex tasks. It is progressively penetrating real-world scenarios across physical economies, drawing a new blueprint for industrial digital upgrades and intelligent economic development. The synergistic evolution of open source and AI is reshaping innovation models, industrial organization, and social production methods. Open-source communities, toolchains, models, and data infrastructure have become critical foundations for intelligent economy construction, industrial software development, industrial collaborative innovation, and talent cultivation.</p>
+          <p>Against this backdrop, COIA, grounded in China's rich AI industry practices and aligned with the global trend of open source and AI integration, guided the establishment of OAAIF. <strong>The goal is to use open collaboration models to solve core problems such as interface fragmentation, ecosystem barriers, and security governance in agent development, promoting large-scale, trustworthy commercial application of AI agent technology under compliance.</strong></p>
+          <p>As a Chinese open-source foundation focused on AI, OAAIF upholds a neutral, professional, and commercially oriented public welfare stance, shouldering the mission of breaking through bottlenecks in China's AI open-source industry and connecting with the global AI industry. With the rapid development of AI agent technology, new collaborative relationships are forming among super individuals, innovative small teams, developer communities, and foundation platforms. Meanwhile, large-scale AI participation in production practices has significantly raised the importance of code security, supply chain security, data security, model governance, and intellectual property compliance. <strong>Thus, using open source to build industrial consensus and integrate innovation resources has become an inevitable choice for healthy AI agent technology development.</strong> This is the core intention behind COIA's guidance in establishing OAAIF—leveraging the alliance's platform advantages to connect developers, AI open-source projects, industry, academia, and public resources, building a neutral and open collaborative platform for AI agent ecosystem development, serving national strategies such as AI+, open-source community construction, and industrial digital transformation, and contributing to technological innovation, industrial upgrading, and public interest.</p>
+
+          <h2>II OAAIF's Action Directions for Open Source Ecosystem Development</h2>
+          <h3>1. Strengthen Open Source Project Incubation and Empowerment</h3>
+          <p>Leverage the foundation's platform advantages to provide incubation, donation, and resource support for high-quality open-source projects in the AI agent field, focusing on agent infrastructure, lowering technical barriers, and promoting collaborative innovation and standard co-construction for core technologies.</p>
+          <h3>2. Support Developers and Innovation Entities</h3>
+          <p>Align with policy directions for the new individual economy, providing open-source technology platforms and community support for lightweight entrepreneurship, super individuals, and small-team innovation, unleashing individual and small-team creativity, and cultivating innovation vitality in the AI agent ecosystem.</p>
+          <h3>3. Bridge Open Source and Industrial Needs</h3>
+          <p>Build bridges between open-source communities and industry, promoting deep integration of AI agent open-source technologies with industrial software and real-world economic scenarios, transforming open-source achievements into actual industrial value, and supporting industrial digital upgrades.</p>
+          <h3>4. Build Trustworthy Open Source and AI Governance Capabilities</h3>
+          <p>Collaborate with professional institutions and industry experts to conduct research and practice on AI agent security governance and compliance assessment, promoting the establishment of a sound governance system for open-source agents, providing compliant and stable institutional guarantees for technological development.</p>
+          <h3>5. Deepen International Open Source Collaboration and Exchange</h3>
+          <p>Support OAAIF's global expansion, enabling higher-quality participation of Chinese AI agent open-source projects in global community collaboration. Work with global open-source organizations and communities to advance open, trustworthy, and sustainable AI and open-source ecosystem development, taking on a more active Chinese role in global open-source governance.</p>
+          <h3>6. Build a Collaborative Innovation and Exchange Platform</h3>
+          <p>Continue to organize technical forums, hands-on exchanges, and other activities, creating a platform for technical exchange and idea sharing in the AI agent field, promoting technology experience sharing, industry-university-research collaborative innovation, and building consensus and exploring paths for AI agent ecosystem development.</p>
+
+          <h2>III Looking Ahead: Together into the Intelligent Era</h2>
+          <p>COIA will take the establishment of OAAIF as an opportunity to continue playing its role as an open-source public infrastructure organizer, open-source project governance and incubation platform, and public organization connecting global open-source collaboration networks. With a neutral and professional public welfare stance, it will bring together innovative forces to promote the construction and prosperity of the AI agent open-source ecosystem. In the future, the foundation will continue to be grounded in Chinese practice while orienting toward global collaboration, using open source to drive the safe, trustworthy, and sustainable development of AI agent technology, <strong>making open source a vital bridge for AI agent technology to serve industry and benefit society, contributing open-source wisdom and solutions to intelligent economic development and global digital transformation.</strong></p>
+        `
+      }
+    };
+
+    let lang = "zh";
+
+    function getUrlParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function renderDetail() {
+      const container = document.getElementById("articleContent");
+      if (!container) return;
+      
+      const data = detailData[lang];
+      container.innerHTML = `
+        <h1>${data.title}</h1>
+        <div class="article-date">📅 ${data.date}</div>
+        <div class="article-content">${data.content}</div>
+      `;
+    }
+
+    function renderText() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const texts = {
+          zh: {
+            backLink: "← 返回新闻列表",
+            pageTitle: "新闻详情",
+            footText: "© 2026 COIA. 保留所有权利。"
+          },
+          en: {
+            backLink: "← Back to News",
+            pageTitle: "News Detail",
+            footText: "© 2026 COIA. All rights reserved."
+          }
+        };
+        if (texts[lang][key]) {
+          el.textContent = texts[lang][key];
+        }
+      });
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = lang === "zh" ? "新闻详情 - COIA" : "News Detail - COIA";
+      document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
+      renderDetail();
+    }
+
+    const urlLang = getUrlParam('lang');
+    if (urlLang && (urlLang === 'zh' || urlLang === 'en')) {
+      lang = urlLang;
+    } else {
+      const savedLang = localStorage.getItem('coia_lang');
+      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
+        lang = savedLang;
+      }
+    }
+    
+    renderText();
+
+    document.getElementById("langBtn").addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      renderText();
+      localStorage.setItem('coia_lang', lang);
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', newUrl);
+    });
+  </script>
+</body>
+</html>
