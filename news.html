@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="coia_favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="coia_favicon.ico" />
+  <title>新闻与活动 - COIA</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#10233f;
+      --muted:#4f647d;
+      --brand:#10bcd6;
+      --brand-dark:#0a7fa0;
+      --line:#d9e3ef;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;background:var(--bg);color:var(--text);}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:0 auto}
+    .header{
+      background:linear-gradient(135deg, #102544 0%, #0c1a31 45%, #153763 100%);
+      color:#fff;padding:32px 0 40px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .header-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    .header-left{
+      flex:1;
+    }
+    .header-left h1{margin:0 0 8px;font-size:1.8rem}
+    .header-left p{margin:0;opacity:.8}
+    .back-link{
+      display:inline-block;margin-bottom:12px;color:#10bcd6;
+      border:1px solid #10bcd6;border-radius:999px;padding:6px 16px;
+      font-size:.85rem;transition:.2s;
+    }
+    .back-link:hover{background:rgba(16,188,214,.1)}
+    .lang-btn-header{
+      background:rgba(255,255,255,.2);
+      border:1px solid rgba(255,255,255,.4);
+      border-radius:999px;
+      padding:8px 18px;
+      cursor:pointer;
+      font-weight:600;
+      color:#fff;
+      font-size:.9rem;
+      transition:all 0.2s ease;
+    }
+    .lang-btn-header:hover{
+      background:rgba(255,255,255,.3);
+      border-color:var(--brand);
+    }
+    section{padding:40px 0}
+    .news-list{
+      display:flex;flex-direction:column;gap:16px;
+    }
+    .news-item{
+      background:var(--card);border:1px solid var(--line);border-radius:14px;
+      padding:20px 24px;transition:all 0.2s ease;cursor:pointer;
+    }
+    .news-item:hover{
+      transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08);
+      border-color:var(--brand);
+    }
+    .news-title{
+      font-size:1.2rem;font-weight:700;color:var(--text);margin:0 0 8px;
+    }
+    .news-date{
+      font-size:.85rem;color:var(--brand-dark);margin-bottom:12px;display:inline-block;
+    }
+    .news-summary{
+      color:var(--muted);line-height:1.6;margin:0;
+    }
+    .footer{
+      background:#0a1830;color:#b8c9e5;padding:24px 0;text-align:center;margin-top:20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="header-left">
+          <a href="index.html" class="back-link" data-i18n="backLink">← 返回首页</a>
+          <h1 data-i18n="pageTitle">新闻与活动</h1>
+          <p data-i18n="pageSub">了解 COIA 最新动态</p>
+        </div>
+        <button class="lang-btn-header" id="langBtn">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="news-list" id="newsList">
+        <!-- 动态生成新闻列表 -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footText">© 2026 COIA. 保留所有权利。</p>
+    </div>
+  </footer>
+
+  <script>
+    // 原始数据（顺序任意，渲染时会自动按日期排序）
+    const rawNewsData = {
+      zh: [
+        {
+          id: "agentcon-shenzhen-2026",
+          title: "牛来运转，爆拉收官！2026 AgentCon深圳站圆满落幕！",
+          date: "2026年8月22日",
+          summary: "2026年8月22日，开放智算产业联盟在深圳南山夫子国际会议中心成功举办AgentCon 2026深圳站。大会汇聚了智能体领域的顶尖专家，围绕智能体操作系统、工业应用、科研教育、运维工具等话题展开深入探讨，并正式启动了2027年度联合国AI for Good大赛COIA智能体赛道。",
+          detailUrl: "news-detail5.html?id=agentcon-shenzhen-2026"
+        },
+        {
+          id: "ai-power-2026-forum",
+          title: "开放智算产业联盟（COIA）联合 Linux 基金会亚太区承办的“AI+ Power 2026 - Open Source Agentic AI 技術應用落地”分论坛顺利举行",
+          date: "2026年6月4日",
+          summary: "2026年6月4日，由开放智算产业联盟（COIA）联合 Linux 基金会亚太区承办的“AI+ Power 2026 - Open Source Agentic AI 技術應用落地”分论坛在香港会议展览中心举行。论坛聚焦开源AI智能体应用落地，汇聚顶尖专家探讨企业智能化升级路径。",
+          detailUrl: "news-detail3.html?id=ai-power-2026-forum"
+        },
+        {
+          id: "oaiaf-foundation",
+          title: "开放代理式人工智能基金会成立大会顺利召开",
+          date: "2026年3月26日",
+          summary: "3月26日，由开放智算产业联盟联合天工开物开源基金会、中国开源软件推进联盟（COPU）指导的开放代理式人工智能基金会（OAAIF）成立大会暨“灵虾计划-智能体创客”论坛在上海漕河泾科技绿洲成功举办。作为国内首个聚焦智能体领域的基金会，标志着中国AI智能体生态迈入开放协作、共建共享的新阶段。",
+          detailUrl: "news-detail4.html?id=oaiaf-foundation"
+        },
+        {
+          id: "opea-un-competition",
+          title: "开放智算产业联盟携手联合国AI for Good全球峰会发起OPEA竞赛",
+          date: "2025年7月9日",
+          summary: "2025年7月9日，开放智算产业联盟联合\"AIGC青年大学生就业创业促进行动执委会\"，在联合国AI for Good全球峰会提交以OPEA为核心的赛道提案并顺利完成答辩，获得大会认可。标志着OPEA作为联盟收录的开源项目，已经成为全球AI创新发展的重要组成部分。",
+          detailUrl: "news-detail2.html?id=opea-un-competition"
+        },
+        {
+          id: "foundation-conference",
+          title: "推进人工智能新生态！开放智算产业联盟成立大会圆满落幕！",
+          date: "2024年12月18日",
+          summary: "2024年12月18日，在Linux基金会AI&Data、中国开源软件推进联盟的支持与指导之下，开放智算产业联盟（COIA）成立大会在北京金隅喜来登酒店正式举办。首批四十余家成员单位共同见证了这一历史性时刻。",
+          detailUrl: "news-detail.html?id=foundation-conference"
+        }
+      ],
+      en: [
+        {
+          id: "agentcon-shenzhen-2026",
+          title: "AgentCon 2026 Shenzhen Successfully Concluded!",
+          date: "August 22, 2026",
+          summary: "On August 22, 2026, COIA successfully hosted AgentCon 2026 Shenzhen at Nanshan Fuzi International Conference Center. The event brought together top experts in AI agents, covering topics such as agent OS, industrial applications, research & education, and DevOps tools. The 2027 UN AI for Good COIA Agent Track was also officially launched.",
+          detailUrl: "news-detail5.html?id=agentcon-shenzhen-2026"
+        },
+        {
+          id: "ai-power-2026-forum",
+          title: "COIA & Linux Foundation APAC Successfully Host “AI+ Power 2026 - Open Source Agentic AI Application Implementation” Sub-Forum",
+          date: "June 4, 2026",
+          summary: "On June 4, 2026, the sub-forum “AI+ Power 2026 - Open Source Agentic AI Application Implementation” co-organized by COIA and Linux Foundation APAC was held at the Hong Kong Convention and Exhibition Centre. The forum focused on open-source AI agent implementation, gathering top experts to discuss enterprise intelligence upgrades.",
+          detailUrl: "news-detail3.html?id=ai-power-2026-forum"
+        },
+        {
+          id: "oaiaf-foundation",
+          title: "Inaugural Conference of the Open Agentic AI Foundation Successfully Held",
+          date: "March 26, 2026",
+          summary: "On March 26, the inaugural conference of the Open Agentic AI Foundation (OAAIF), guided by COIA, Tiangong Kaiwu Open Source Foundation, and COPU, was successfully held in Shanghai. As China's first foundation focused on AI agents, it marks a new stage of open collaboration and shared development for China's AI agent ecosystem.",
+          detailUrl: "news-detail4.html?id=oaiaf-foundation"
+        },
+        {
+          id: "opea-un-competition",
+          title: "COIA Launches OPEA Competition at UN AI for Good Global Summit",
+          date: "July 9, 2025",
+          summary: "On July 9, 2025, COIA, in collaboration with the \"AIGC Youth Employment and Entrepreneurship Action Committee,\" submitted a track proposal centered on OPEA at the UN AI for Good Global Summit. After a successful defense, the proposal received recognition from the conference, marking OPEA as a key component of global AI innovation.",
+          detailUrl: "news-detail2.html?id=opea-un-competition"
+        },
+        {
+          id: "foundation-conference",
+          title: "Promoting a New AI Ecosystem: COIA Inaugural Conference Successfully Concluded!",
+          date: "December 18, 2024",
+          summary: "On December 18, 2024, with the support of LF AI & Data and China OSS Promotion Union, the inaugural conference of the Cooperative Open Intelligent Industry Alliance (COIA) was officially held at the Beijing Jinmao Sheraton Hotel. The first 40+ member units witnessed this historic moment.",
+          detailUrl: "news-detail.html?id=foundation-conference"
+        }
+      ]
+    };
+
+    // 日期解析函数（支持中文和英文格式）
+    function parseDate(dateStr, lang) {
+      if (lang === 'zh') {
+        const match = dateStr.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+        if (match) {
+          const year = parseInt(match[1], 10);
+          const month = parseInt(match[2], 10) - 1;
+          const day = parseInt(match[3], 10);
+          return new Date(year, month, day);
+        }
+      } else {
+        const parsed = new Date(Date.parse(dateStr));
+        if (!isNaN(parsed)) return parsed;
+      }
+      return new Date(0);
+    }
+
+    let lang = "zh";
+
+    function getUrlParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function renderNewsList() {
+      const container = document.getElementById("newsList");
+      if (!container) return;
+      
+      let news = [...rawNewsData[lang]];
+      news.sort((a, b) => {
+        const dateA = parseDate(a.date, lang);
+        const dateB = parseDate(b.date, lang);
+        return dateB - dateA;
+      });
+      
+      container.innerHTML = "";
+      
+      news.forEach(item => {
+        const newsItem = document.createElement("div");
+        newsItem.className = "news-item";
+        newsItem.onclick = () => {
+          window.location.href = `${item.detailUrl}&lang=${lang}`;
+        };
+        
+        newsItem.innerHTML = `
+          <h3 class="news-title">${item.title}</h3>
+          <span class="news-date">📅 ${item.date}</span>
+          <p class="news-summary">${item.summary}</p>
+        `;
+        
+        container.appendChild(newsItem);
+      });
+    }
+
+    function renderText() {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const texts = {
+          zh: {
+            backLink: "← 返回首页",
+            pageTitle: "新闻与活动",
+            pageSub: "了解 COIA 最新动态",
+            footText: "© 2026 COIA. 保留所有权利。"
+          },
+          en: {
+            backLink: "← Back to Home",
+            pageTitle: "News & Events",
+            pageSub: "Latest updates from COIA",
+            footText: "© 2026 COIA. All rights reserved."
+          }
+        };
+        if (texts[lang][key]) {
+          el.textContent = texts[lang][key];
+        }
+      });
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = lang === "zh" ? "新闻与活动 - COIA" : "News & Events - COIA";
+      document.getElementById("langBtn").textContent = lang === "zh" ? "EN" : "中";
+      renderNewsList();
+    }
+
+    const urlLang = getUrlParam('lang');
+    if (urlLang && (urlLang === 'zh' || urlLang === 'en')) {
+      lang = urlLang;
+    } else {
+      const savedLang = localStorage.getItem('coia_lang');
+      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
+        lang = savedLang;
+      }
+    }
+    
+    renderText();
+
+    document.getElementById("langBtn").addEventListener("click", () => {
+      lang = lang === "zh" ? "en" : "zh";
+      renderText();
+      localStorage.setItem('coia_lang', lang);
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', newUrl);
+    });
+  </script>
+</body>
+</html>
